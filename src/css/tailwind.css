@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root,
+  .App {
+    @apply h-max bg-[#c6ffc8] box-border;
+  }
+}
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.DatePicker select {
+  @apply bg-transparent text-center rounded-md px-4 py-2 m-2 border border-black;
+}
+.DatePicker {
+  @apply flex justify-evenly items-center;
+}
+.Shift {
+  @apply bg-transparent text-center rounded-md px-4 py-2 m-2 border border-black;
+}
