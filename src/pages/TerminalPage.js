@@ -5,14 +5,13 @@ import { apiUrl } from "../db/config";
 import { useFetch } from "../hooks/useFetch";
 
 export default function TerminalPage() {
-  const { data, error , isLoading } = useFetch(`${apiUrl}TerminalData`);
-  const {t , i18n} = useTranslation();
-
+  const { data, error, isLoading } = useFetch(`${apiUrl}TerminalData`);
+  const { t } = useTranslation();
 
   useEffect(() => {
     console.log(error);
-  }, [error])
-  
+  }, [error]);
+
   return (
     <div className="App">
       <nav className="w-full  h-20 mb-8    shadow-xl flex flex-wrap p-6 justify-between items-center ">
