@@ -8,7 +8,6 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-const optionss = [1, 2, 3, 4, 5, 6, 789, 71];
 function ConfirmationDialogRaw(props) {
   const { onClose, value: valueProp, open, options, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
@@ -155,6 +154,9 @@ export default function DialogRaw({ value, open, setOpen, setValue, objErrs }) {
     return err.defectName;
   });
 
+  if (value) {
+    console.log(value);
+  }
   return (
     <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       <ConfirmationDialogRaw
