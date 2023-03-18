@@ -50,6 +50,15 @@ export default function ImgProvider({ children }) {
     }
   };
 
+  const returnMainObj = () => {
+    setObj(mainObj.defectButtonRecords);
+    setObjErr(mainObj.partDefects);
+
+    setPicName(mainObj.defectButtonRecords[0].picId)
+    setAllObjErr([]);
+    setPreviousObj([]);
+  };
+
   return (
     <ImgContext.Provider
       value={{
@@ -67,6 +76,7 @@ export default function ImgProvider({ children }) {
         setValue: setErrValue,
         handleCLick: handleCLick,
         prevClick: prevClick,
+        returnMainObj: returnMainObj,
       }}
     >
       {children}

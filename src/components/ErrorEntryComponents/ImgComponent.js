@@ -6,7 +6,6 @@ import DrawLine from "./DrawLine";
 
 export const ImgComponent = () => {
   const { obj, value } = useImgContext();
-
   return (
     <div
       style={{

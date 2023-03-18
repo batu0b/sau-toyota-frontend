@@ -30,3 +30,6 @@
 .Shift {
   @apply bg-transparent text-center rounded-md px-4 py-2 m-2 border border-black;
 }
+.ErrorPageBtn {
+  @apply bg-transparent border-2  border-black rounded-md w-28 py-4;
+}

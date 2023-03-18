@@ -15,6 +15,7 @@ export const ImgContext = createContext({
   setObjErr: () => {},
   prevClick: () => {},
   handleCLick: async (color, picName , func) => {},
+  returnMainObj: () => {}
 });
 
 export const useImgContext = () => useContext(ImgContext);
