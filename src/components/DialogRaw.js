@@ -56,6 +56,7 @@ function ConfirmationDialogRaw(props) {
           flexDirection: "row",
           backgroundColor: "transparent",
           boxShadow: "none",
+          margin: 0,
         },
         ".css-1t4vnk2-MuiDialogContent-root": {
           padding: 0,
@@ -86,13 +87,25 @@ function ConfirmationDialogRaw(props) {
           {options.map((option) => (
             <DialogContent
               dividers
-              sx={{ background: "#C6FFC8" }}
+              className="relative"
+              sx={{
+                background: "#C6FFC8",
+                padding: 0,
+                height: 76,
+                textAlign: "center",
+              }}
               onClick={() => handleClick(option)}
             >
               <FormControlLabel
                 value={option}
                 key={option}
-                control={<Radio />}
+                sx={{
+                  width: "100%",
+                  margin: 0,
+                  height: "100%",
+                  justifyContent: "center",
+                }}
+                control={<Radio sx={{ display: "none" }} />}
                 label={option}
               />
             </DialogContent>
@@ -158,7 +171,13 @@ export default function DialogRaw({ value, open, setOpen, setValue, objErrs }) {
     console.log(value);
   }
   return (
-    <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: 360,
+        height: "auto",
+      }}
+    >
       <ConfirmationDialogRaw
         options={options}
         keepMounted

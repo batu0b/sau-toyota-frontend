@@ -82,3 +82,17 @@ export const jpnLayout = {
     ".com @ {space}",
   ],
 };
+
+export const lang = (i18n) => {
+  if (i18n.resolvedLanguage === "tr") {
+    return trLayout;
+  } else if (i18n.resolvedLanguage === "en") {
+    return enLayout;
+  } else if (i18n.resolvedLanguage === "ru") {
+    return rusLayout;
+  } else if (i18n.resolvedLanguage === "sa") {
+    return arapLayout;
+  } else if (i18n.resolvedLanguage === "jp") {
+    return jpnLayout;
+  }
+};

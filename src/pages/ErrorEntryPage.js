@@ -54,7 +54,7 @@ export default function ErrorEntryPage() {
               />
               <ImgComponent />
             </div>
-            <span className="flex gap-6">
+            <span className="flex py-3 gap-6">
               <button
                 className="ErrorPageBtn"
                 disabled={previousObj.length === 0}

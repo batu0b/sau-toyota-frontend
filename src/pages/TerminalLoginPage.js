@@ -4,8 +4,10 @@ import { CustomDatePicker } from "../components/inputs/CustomDatePicker";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import { CustomInputText } from "../components/inputs/CustomInputText";
+import { VirtualKeyboard } from "../components/VirtualKeyboard";
 
 export default function TerminalLoginPage() {
+  const [focusedField, setFocusedField] = useState(null);
   const { t } = useTranslation();
   const colorPickerFunc = (vard) => {
     if (vard === "blue") {
@@ -18,12 +20,14 @@ export default function TerminalLoginPage() {
       return "#C6FFC8";
     }
   };
-
+  const handleOnChange = (event) => {
+    console.log("Form::onChange", event);
+  };
   return (
     <div className="h-screen flex justify-center items-center">
-      <div className="w-1/2 border-black flex flex-col lga:w-5/6 rounded-md border h-[90vh] ">
+      <div className="w-1/2 border-black flex flex-col lga:w-5/6 rounded-md border h-fit ">
         <header className="p-4 border-b border-black">asdas</header>
-        <div className="h-full flex justify-center ">
+        <div className="h-full pt-5 flex justify-center ">
           {" "}
           <Formik
             initialValues={{
@@ -45,16 +49,16 @@ export default function TerminalLoginPage() {
               handleReset,
               dirty,
               isSubmitting,
-
               touched,
             }) => {
               return (
-                <Form className="flex flex-col justify-center gap-5 items-start">
+                <Form className="flex w-full  flex-col justify-center gap-5 items-center">
                   <div className="flex w-[420px] flex-col gap-4 items-end  ">
                     <Field
                       name="RegistrationNo"
                       type="text"
                       component={CustomInputText}
+                      onFocus={() => setFocusedField("RegistrationNo")}
                       label={t("registrationNo")}
                       className="flex w-full gap-4 items-center"
                       labelClass="w-[20%] rounded-md "
@@ -66,13 +70,15 @@ export default function TerminalLoginPage() {
                       label={t("password")}
                       className="flex w-full gap-4 items-center"
                       component={CustomInputText}
+                      onFocus={() => setFocusedField("password")}
                       labelClass="w-[20%]"
                       inputClass="w-[80%] rounded-md p-3 "
                     />
                     <Field
                       className="flex  w-full gap-4 items-center"
                       name="assemblyNo"
-                      type="number"
+                      type="text"
+                      onFocus={() => setFocusedField("assemblyNo")}
                       component={CustomInputText}
                       label={t("assemblyNo")}
                       labelClass="w-[20%]"
@@ -99,6 +105,20 @@ export default function TerminalLoginPage() {
                       <option value="red">{t("ShiftR")}</option>
                       <option value="white">{t("ShiftW")}</option>
                     </Field>
+                  </div>
+                  <div className="flex gap-6 ">
+                    <button className="bg-[#000000]  LoginPageBtn ">
+                      {t("Login")}{" "}
+                    </button>
+                    <button className="bg-[#d41922] LoginPageBtn  ">
+                      {t("Close")}
+                    </button>
+                  </div>
+                  <div className="h-fit bg-white w-full">
+                    <VirtualKeyboard
+                      handleChange={handleChange}
+                      focusedItem={focusedField}
+                    />
                   </div>
                 </Form>
               );

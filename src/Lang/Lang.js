@@ -31,6 +31,8 @@ i18n
           password: "Password",
           registrationNo: "Registration Number",
           PassReq: "Please Do Not Leave Your Password Empty",
+          Login: "Login",
+          Close: "Close",
         },
       },
       tr: {
@@ -52,6 +54,8 @@ i18n
           password: "Şifre",
           registrationNo: "Sicil No",
           PassReq: "Lütfen Şifrenizi Boş Bırakmayınız",
+          Login: "Giriş Yap",
+          Close: "Kapat",
         },
       },
       ru: {
