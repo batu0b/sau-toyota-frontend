@@ -84,8 +84,9 @@ function ConfirmationDialogRaw(props) {
           value={value}
           sx={{ width: "100%" }}
         >
-          {options.map((option) => (
+          {options.map((option, index) => (
             <DialogContent
+              key={index}
               dividers
               className="relative"
               sx={{
