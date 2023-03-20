@@ -13,7 +13,7 @@ export const CustomInputText = ({
   return (
     <label className={className}>
       <div className={labelClass}>{label} </div>
-      <input className={inputClass} {...field} {...props} />
+      <input className={inputClass} max={3} {...field} {...props} />
     </label>
   );
 };

@@ -5,9 +5,11 @@ import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import { CustomInputText } from "../components/inputs/CustomInputText";
 import { VirtualKeyboard } from "../components/VirtualKeyboard";
+import DialogRaw from "../components/DialogRaw";
 
 export default function TerminalLoginPage() {
   const [focusedField, setFocusedField] = useState(null);
+  const [open, setOpen] = useState(true);
   const { t } = useTranslation();
   const colorPickerFunc = (vard) => {
     if (vard === "blue") {
@@ -20,9 +22,7 @@ export default function TerminalLoginPage() {
       return "#C6FFC8";
     }
   };
-  const handleOnChange = (event) => {
-    console.log("Form::onChange", event);
-  };
+
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="w-1/2 border-black flex flex-col lga:w-5/6 rounded-md border h-fit ">
@@ -36,24 +36,47 @@ export default function TerminalLoginPage() {
               assemblyNo: "",
               shift: "",
               date: null,
+              termName: "",
             }}
             validationSchema={Yup.object({
               password: Yup.string().required(`${t("PassReq")}`),
+              assemblyNo: Yup.number().max(5).required(),
             })}
           >
-            {({
-              values,
-              handleChange,
-              handleSubmit,
-              errors,
-              handleReset,
-              dirty,
-              isSubmitting,
-              touched,
-            }) => {
+            {({ values, handleChange, setFieldValue }) => {
               return (
                 <Form className="flex w-full  flex-col justify-center gap-5 items-center">
+                  <Field
+                    name="termName"
+                    render={({ field }) => {
+                      const customChangeValue = (value) => {
+                        setFieldValue("termName", value);
+                      };
+                      return (
+                        <DialogRaw
+                          value={values.termName}
+                          option={[`1`, ` 2`, `3`, `4`, ` 5`]}
+                          open={open}
+                          setOpen={setOpen}
+                          setValue={customChangeValue}
+                        />
+                      );
+                    }}
+                  />
                   <div className="flex w-[420px] flex-col gap-4 items-end  ">
+                    <label className="flex w-full gap-4 items-center">
+                      <div className="w-[20%] rounded-md ">Terminal Listesi</div>
+                      <button
+                        onClick={() => setOpen(true)}
+                        className="w-[80%] h-12 relative rounded-md p-3 border border-black"
+                      >
+                        {values.termName}{" "}
+                        <span className="absolute top-1/2 -translate-y-1/2 right-5 rotate-90 text-xl">
+                          {">"}
+                        </span>
+                      </button>
+                    </label>
+
                     <Field
                       name="RegistrationNo"
                       type="text"
@@ -78,6 +101,7 @@ export default function TerminalLoginPage() {
                       className="flex  w-full gap-4 items-center"
                       name="assemblyNo"
                       type="text"
+                      maxlength="5"
                       onFocus={() => setFocusedField("assemblyNo")}
                       component={CustomInputText}
                       label={t("assemblyNo")}
@@ -85,6 +109,7 @@ export default function TerminalLoginPage() {
                       inputClass="w-[80%] rounded-md p-3 "
                     />
                   </div>
+
                   <div
                     style={{
                       backgroundColor: `${colorPickerFunc(values.shift)}`,

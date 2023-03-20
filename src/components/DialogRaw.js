@@ -155,7 +155,14 @@ ConfirmationDialogRaw.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default function DialogRaw({ value, open, setOpen, setValue, objErrs }) {
+export default function DialogRaw({
+  value,
+  open,
+  setOpen,
+  setValue,
+  objErrs,
+  option,
+}) {
   const handleClose = (newValue) => {
     setOpen(false);
 
@@ -164,10 +171,13 @@ export default function DialogRaw({ value, open, setOpen, setValue, objErrs }) {
     }
   };
 
-  const options = objErrs.map((err) => {
+  const optionsErr = objErrs?.map((err) => {
     return err.defectName;
   });
 
+  const options = option?.map((op) => {
+    return op;
+  });
   if (value) {
     console.log(value);
   }
@@ -180,7 +190,7 @@ export default function DialogRaw({ value, open, setOpen, setValue, objErrs }) {
       }}
     >
       <ConfirmationDialogRaw
-        options={options}
+        options={options || optionsErr}
         keepMounted
         open={open}
         onClose={handleClose}

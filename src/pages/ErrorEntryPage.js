@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { ImgComponent } from "../components/ErrorEntryComponents/ImgComponent";
 import { useImgContext } from "../context/ImgConext/ImgContext";
 import { apiUrl } from "../db/config";
@@ -18,7 +18,7 @@ export default function ErrorEntryPage() {
     returnMainObj,
   } = useImgContext();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (data) {
       setPicName(data.defectButtonRecords[0].picId);
       setObj(data.defectButtonRecords);
@@ -36,7 +36,7 @@ export default function ErrorEntryPage() {
   return (
     <>
       {!isLoading && data ? (
-        <div className="flex  justify-center  flex-wrap">
+        <div className="flex   justify-center  flex-wrap">
           <span className="flex  border  border-black rounded-md  justify-center  flex-wrap ">
             <div className=" w-fit">
               <div className="h-20">asdasdasd</div>
@@ -58,7 +58,7 @@ export default function ErrorEntryPage() {
                 <button className="ErrorPageBtn">Buyuk Font</button>
               </span>
             </div>
-            <div className="w-56 lga:flex lga:w-full bg-red-400">
+            <div className="w-56 flex flex-col lga:w-full p-3 text-center">
               <h1>asdasd</h1>
               <div>asdasd</div>
               <div>asdasd</div>
