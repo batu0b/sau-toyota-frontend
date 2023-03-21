@@ -29,7 +29,12 @@ const TerminalTableComponent = ({ data }) => {
         <td className="border-b flex gap-5 px-3  items-center flex-wrap   w-[85%] border-black/30">
           {data[index].filterBaseds.map((item) => (
             <span
-              onClick={() => navigate(`/cvqsterminal/${data[index]?.depCode}/${item.filterCode}`)}
+              onClick={() =>
+                navigate(
+                  `/cvqsterminal/${data[index]?.depCode}/${item.filterCode}`,
+                  { state: { dummyOptionData: data[index] } }
+                )
+              }
               className="bg-transparent border relative border-black cursor-pointer lga:px-2 px-5 py-2 rounded-lg"
             >
               {item.filterCode}

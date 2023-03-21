@@ -6,11 +6,14 @@ import { useTranslation } from "react-i18next";
 import { CustomInputText } from "../components/inputs/CustomInputText";
 import { VirtualKeyboard } from "../components/VirtualKeyboard";
 import DialogRaw from "../components/DialogRaw";
+import { useLocation, useNavigate } from "react-router-dom";
+import ExampleData from "../db/exampleData.json";
 
 export default function TerminalLoginPage() {
   const [focusedField, setFocusedField] = useState(null);
   const [open, setOpen] = useState(true);
   const { t } = useTranslation();
+  const { state } = useLocation();
   const colorPickerFunc = (vard) => {
     if (vard === "blue") {
       return "#1ba6e7";
@@ -23,10 +26,24 @@ export default function TerminalLoginPage() {
     }
   };
 
+  const navigate = useNavigate();
+
+  //dummy selectyor data
+  const options = state.dummyOptionData.filterBaseds.map((item) => {
+    if (item.termName) {
+      return item.termName;
+    } else {
+      return "Dummy Select";
+    }
+  });
+
+  console.log(options);
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center  items-center">
       <div className="w-1/2 border-black flex flex-col lga:w-5/6 rounded-md border h-fit ">
-        <header className="p-4 border-b border-black">asdas</header>
+        <header className="p-4 border-b uppercase  text-center text-red-600 font-bold text-lg border-black">
+          cvqs (ttmt)
+        </header>
         <div className="h-full pt-5 flex justify-center ">
           {" "}
           <Formik
@@ -35,7 +52,7 @@ export default function TerminalLoginPage() {
               RegistrationNo: "",
               assemblyNo: "",
               shift: "",
-              date: null,
+              date: new Date(),
               termName: "",
             }}
             validationSchema={Yup.object({
@@ -55,7 +72,7 @@ export default function TerminalLoginPage() {
                       return (
                         <DialogRaw
                           value={values.termName}
-                          option={[`1`, ` 2`, `3`, `4`, ` 5`]}
+                          option={options}
                           open={open}
                           setOpen={setOpen}
                           setValue={customChangeValue}
@@ -65,7 +82,9 @@ export default function TerminalLoginPage() {
                   />
                   <div className="flex w-[420px] flex-col gap-4 items-end  ">
                     <label className="flex w-full gap-4 items-center">
-                      <div className="w-[20%] rounded-md ">Terminal Listesi</div>
+                      <div className="w-[20%] rounded-md ">
+                        Terminal Listesi
+                      </div>
                       <button
                         onClick={() => setOpen(true)}
                         className="w-[80%] h-12 relative rounded-md p-3 border border-black"
@@ -135,7 +154,15 @@ export default function TerminalLoginPage() {
                     <button className="bg-[#000000]  LoginPageBtn ">
                       {t("Login")}{" "}
                     </button>
-                    <button className="bg-[#d41922] LoginPageBtn  ">
+                    <button
+                      onClick={() =>
+                        navigate("/", {
+                          preventScrollReset: true,
+                          replace: true,
+                        })
+                      }
+                      className="bg-[#d41922] LoginPageBtn  "
+                    >
                       {t("Close")}
                     </button>
                   </div>

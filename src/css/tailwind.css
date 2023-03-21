@@ -34,6 +34,14 @@
   @apply bg-transparent border-2  border-black rounded-md w-28 py-4;
 }
 
-.LoginPageBtn{
-  @apply w-36 py-4 rounded-md text-white
+.LoginPageBtn {
+  @apply w-36 py-4 rounded-md text-white;
+}
+
+.ErrorEntryTopBttn {
+  @apply flex font-semibold text-lg flex-col justify-center items-center p-2 rounded-md;
+}
+
+.ErrorEntrySideBttn {
+  @apply flex font-semibold border-black border w-full text-lg flex-col justify-center items-center p-3 rounded-md uppercase;
 }
