@@ -18,9 +18,7 @@ export const ImgComponent = () => {
     setCOrds({ x: x - OffsetX, y: y - OffsetY });
   };
 
-  useEffect(() => {
-    console.log(cords);
-  }, [cords]);
+
 
   return (
     <div

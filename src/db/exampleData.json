@@ -14,8 +14,10 @@
     "modelId": 23638,
     "assyNo": 222
   },
-  "ExampleUser": {
-    "password": "1234",
-    "sicilno": "99619"
-  }
+  "ExampleUser": [
+    {
+      "password": "1234",
+      "sicilno": "99619"
+    }
+  ]
 }

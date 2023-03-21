@@ -178,9 +178,7 @@ export default function DialogRaw({
   const options = option?.map((op) => {
     return op;
   });
-  if (value) {
-    console.log(value);
-  }
+
   return (
     <Box
       sx={{

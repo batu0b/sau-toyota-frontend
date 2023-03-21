@@ -30,9 +30,10 @@ i18n
           assemblyNo: "Assembly No",
           password: "Password",
           registrationNo: "Registration Number",
-          PassReq: "Please Do Not Leave Your Password Empty",
+          UserNotFound: "User information is not correct",
           Login: "Login",
           Close: "Close",
+          TerminalList: "Terminal List",
         },
       },
       tr: {
@@ -53,9 +54,10 @@ i18n
           assemblyNo: "Montoj No",
           password: "Şifre",
           registrationNo: "Sicil No",
-          PassReq: "Lütfen Şifrenizi Boş Bırakmayınız",
+          UserNotFound: "Kullanıcı Bilgıleri Doğru Değil",
           Login: "Giriş Yap",
           Close: "Kapat",
+          TerminalList: "Terminal Listesi",
         },
       },
       ru: {

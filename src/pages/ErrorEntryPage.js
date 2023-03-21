@@ -4,9 +4,9 @@ import { useImgContext } from "../context/ImgConext/ImgContext";
 import { apiUrl } from "../db/config";
 import { useFetch } from "../hooks/useFetch";
 import ExampleData from "../db/exampleData.json";
+import { useNavigate, useLocation } from "react-router-dom";
 export default function ErrorEntryPage() {
   const { data, error, isLoading } = useFetch(`${apiUrl}BoxData`);
-
   const {
     setPicName,
     setObj,
@@ -17,7 +17,15 @@ export default function ErrorEntryPage() {
     returnMainObj,
     value,
   } = useImgContext();
-
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  //kullanici giris yapmadan url ile panele ulasamaz
+  useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
+  }, []);
+  //fotograflarin ismi datadan geldiginden daha hizli state icine aktarilamsi icin useLayoutEffect
   useLayoutEffect(() => {
     if (data) {
       setPicName(data.defectButtonRecords[0].picId);
@@ -95,7 +103,7 @@ export default function ErrorEntryPage() {
                 {/*  */}
                 <div>
                   <div className="flex mb-3 justify-center gap-5">
-                    <span className="flex gap-2"> 
+                    <span className="flex gap-2">
                       {" "}
                       <input
                         className="w-8 h-8 bg-transparent"

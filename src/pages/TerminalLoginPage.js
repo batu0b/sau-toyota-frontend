@@ -1,19 +1,29 @@
 import { Field, Formik, Form } from "formik";
 import React, { useState } from "react";
 import { CustomDatePicker } from "../components/inputs/CustomDatePicker";
-import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import { CustomInputText } from "../components/inputs/CustomInputText";
 import { VirtualKeyboard } from "../components/VirtualKeyboard";
 import DialogRaw from "../components/DialogRaw";
 import { useLocation, useNavigate } from "react-router-dom";
 import ExampleData from "../db/exampleData.json";
+import { TerminalLoginSchema } from "../validations";
+import { Snackbar, Typography } from "@mui/material";
+import { SnackBarComponent } from "../components/SnackBar";
 
 export default function TerminalLoginPage() {
   const [focusedField, setFocusedField] = useState(null);
   const [open, setOpen] = useState(true);
+  const [snackOptions, setSnackOptions] = useState({
+    show: false,
+    message: "",
+    messageType: "",
+  });
   const { t } = useTranslation();
   const { state } = useLocation();
+  const { ExampleUser } = ExampleData;
+  const navigate = useNavigate();
+
   const colorPickerFunc = (vard) => {
     if (vard === "blue") {
       return "#1ba6e7";
@@ -25,9 +35,6 @@ export default function TerminalLoginPage() {
       return "#C6FFC8";
     }
   };
-
-  const navigate = useNavigate();
-
   //dummy selectyor data
   const options = state.dummyOptionData.filterBaseds.map((item) => {
     if (item.termName) {
@@ -36,8 +43,32 @@ export default function TerminalLoginPage() {
       return "Dummy Select";
     }
   });
+  //formik custom submit
+  const handleOnSubmit = async (values, actions) => {
+    console.log(actions);
+    const user = ExampleUser.find(
+      (person) =>
+        person.password === values.password &&
+        person.sicilno === values.RegistrationNo
+    );
+    console.log(user);
+    if (user) {
+      alert(JSON.stringify(values));
+      await actions.resetForm();
+      navigate("/e", {
+        state: {
+          assemblyNo: values.assemblyNo,
+        },
+      });
+    } else {
+      setSnackOptions({
+        message: `${t("UserNotFound")}`,
+        show: true,
+        messageType: "error",
+      });
+    }
+  };
 
-  console.log(options);
   return (
     <div className="h-screen flex justify-center  items-center">
       <div className="w-1/2 border-black flex flex-col lga:w-5/6 rounded-md border h-fit ">
@@ -55,47 +86,55 @@ export default function TerminalLoginPage() {
               date: new Date(),
               termName: "",
             }}
-            validationSchema={Yup.object({
-              password: Yup.string().required(`${t("PassReq")}`),
-              assemblyNo: Yup.number().max(5).required(),
-            })}
+            validationSchema={TerminalLoginSchema}
+            onSubmit={handleOnSubmit}
           >
-            {({ values, handleChange, setFieldValue }) => {
+            {({
+              values,
+              handleChange,
+              setFieldValue,
+              handleSubmit,
+              errors,
+            }) => {
               return (
-                <Form className="flex w-full  flex-col justify-center gap-5 items-center">
-                  <Field
-                    name="termName"
-                    render={({ field }) => {
-                      const customChangeValue = (value) => {
-                        setFieldValue("termName", value);
-                      };
-                      return (
-                        <DialogRaw
-                          value={values.termName}
-                          option={options}
-                          open={open}
-                          setOpen={setOpen}
-                          setValue={customChangeValue}
-                        />
-                      );
-                    }}
-                  />
+                <Form
+                  onSubmit={handleSubmit}
+                  className="flex w-full  flex-col justify-center gap-5 items-center"
+                >
                   <div className="flex w-[420px] flex-col gap-4 items-end  ">
-                    <label className="flex w-full gap-4 items-center">
-                      <div className="w-[20%] rounded-md ">
-                        Terminal Listesi
-                      </div>
-                      <button
-                        onClick={() => setOpen(true)}
-                        className="w-[80%] h-12 relative rounded-md p-3 border border-black"
-                      >
-                        {values.termName}{" "}
-                        <span className="absolute top-1/2 -translate-y-1/2 right-5 rotate-90 text-xl">
-                          {">"}
-                        </span>
-                      </button>
-                    </label>
+                    <Field name="termName">
+                      {() => {
+                        const customChangeValue = (value) => {
+                          setFieldValue("termName", value);
+                        };
+                        return (
+                          <>
+                            <label className="flex w-full gap-4 items-center">
+                              <div className="w-[20%] rounded-md ">
+                                {t("TerminalList")}
+                              </div>
+                              <span
+                                onClick={() => setOpen(true)}
+                                className="w-[80%] h-12 text-center cursor-pointer relative rounded-md p-3 border border-black"
+                              >
+                                {values.termName}{" "}
+                                <span className="absolute top-1/2 -translate-y-1/2 right-5 rotate-90 text-xl">
+                                  {">"}
+                                </span>
+                              </span>
+                            </label>
 
+                            <DialogRaw
+                              value={values.termName}
+                              option={options}
+                              open={open}
+                              setOpen={setOpen}
+                              setValue={customChangeValue}
+                            />
+                          </>
+                        );
+                      }}
+                    </Field>
                     <Field
                       name="RegistrationNo"
                       type="text"
@@ -120,7 +159,6 @@ export default function TerminalLoginPage() {
                       className="flex  w-full gap-4 items-center"
                       name="assemblyNo"
                       type="text"
-                      maxlength="5"
                       onFocus={() => setFocusedField("assemblyNo")}
                       component={CustomInputText}
                       label={t("assemblyNo")}
@@ -133,7 +171,7 @@ export default function TerminalLoginPage() {
                     style={{
                       backgroundColor: `${colorPickerFunc(values.shift)}`,
                     }}
-                    className={`w-fit rounded-md border p-2 border-black/30 flex items-center`}
+                    className={`w-fit justify-evenly rounded-md border p-2  border-black/30 flex items-center`}
                   >
                     <CustomDatePicker name="date" />
                     <Field
@@ -151,7 +189,10 @@ export default function TerminalLoginPage() {
                     </Field>
                   </div>
                   <div className="flex gap-6 ">
-                    <button className="bg-[#000000]  LoginPageBtn ">
+                    <button
+                      type="submit"
+                      className="bg-[#000000]  LoginPageBtn "
+                    >
                       {t("Login")}{" "}
                     </button>
                     <button
@@ -166,12 +207,18 @@ export default function TerminalLoginPage() {
                       {t("Close")}
                     </button>
                   </div>
+
                   <div className="h-fit bg-white w-full">
                     <VirtualKeyboard
                       handleChange={handleChange}
                       focusedItem={focusedField}
                     />
                   </div>
+                  <SnackBarComponent
+                    showTimer={1500}
+                    snackOptions={snackOptions}
+                    setSnack={setSnackOptions}
+                  />
                 </Form>
               );
             }}
