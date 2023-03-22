@@ -8,17 +8,11 @@ export const ImgComponent = () => {
   const selectRef = useRef();
   const [cords, setCOrds] = useState({ x: null, y: null });
 
-  const OffsetX = selectRef.current?.offsetLeft;
-
-  const OffsetY = selectRef.current?.offsetTop;
-
-  const { x, y } = useMousePosition();
+  const { x, y } = useMousePosition(selectRef);
 
   const handleCordClick = () => {
-    setCOrds({ x: x - OffsetX, y: y - OffsetY });
+    setCOrds({ x: x, y: y });
   };
-
-
 
   return (
     <div
@@ -53,6 +47,7 @@ export const ImgComponent = () => {
               width: 800,
               height: 600,
               position: "relative",
+              overflow: "hidden"
             }}
             className="relative"
           >
