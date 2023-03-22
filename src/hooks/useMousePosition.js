@@ -7,11 +7,12 @@ const useMousePosition = (ref) => {
   React.useEffect(() => {
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.offsetX, y: e.offsetY });
-      console.log(e);
     };
     ref.current.addEventListener("mousemove", updateMousePosition);
     return () => {
-      ref.current.removeEventListener("mousemove", updateMousePosition);
+      if (ref.current) {
+        ref.current.removeEventListener("mousemove", updateMousePosition);
+      }
     };
   }, []);
   return mousePosition;

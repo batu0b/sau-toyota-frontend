@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ImgComponent } from "../components/ErrorEntryComponents/ImgComponent";
 import { useImgContext } from "../context/ImgConext/ImgContext";
 import { apiUrl } from "../db/config";
@@ -16,7 +16,10 @@ export default function ErrorEntryPage() {
     prevClick,
     returnMainObj,
     value,
+    errorCords,
   } = useImgContext();
+  const [clicked, setClicked] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const { state } = useLocation();
   const navigate = useNavigate();
   //kullanici giris yapmadan url ile panele ulasamaz
@@ -25,6 +28,18 @@ export default function ErrorEntryPage() {
       navigate("/");
     }
   }, []);
+  useEffect(() => {
+    let timeout;
+    if (!clicked) {
+      timeout = setTimeout(() => {
+        console.log(`alert`);
+      }, 6000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [clicked]);
+
   //fotograflarin ismi datadan geldiginden daha hizli state icine aktarilamsi icin useLayoutEffect
   useLayoutEffect(() => {
     if (data) {
@@ -40,8 +55,6 @@ export default function ErrorEntryPage() {
       setObjErr(null);
     };
   }, [data]);
-
-  console.log(ExampleData.ExampleData);
 
   return (
     <>
@@ -131,9 +144,12 @@ export default function ErrorEntryPage() {
                       Kaydet Ve gec
                     </button>
                     <button
-                      disabled={value ? false : true}
+                      onClick={() => setClicked(true)}
+                      disabled={errorCords.y && errorCords.x ? false : true}
                       className={`ErrorEntrySideBttn ${
-                        !value ? "text-black/50 border-black/50" : ""
+                        !errorCords.y && !errorCords.x
+                          ? "text-black/50 border-black/50"
+                          : ""
                       }`}
                     >
                       Hata Kayit

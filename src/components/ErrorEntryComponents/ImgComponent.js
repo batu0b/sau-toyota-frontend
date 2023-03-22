@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useImgContext } from "../../context/ImgConext/ImgContext";
 import useMousePosition from "../../hooks/useMousePosition";
 import { DrawBox } from "./DrawBox";
@@ -6,12 +6,11 @@ import { DrawBox } from "./DrawBox";
 export const ImgComponent = () => {
   const { picName, obj, value } = useImgContext();
   const selectRef = useRef();
-  const [cords, setCOrds] = useState({ x: null, y: null });
-
+  const { errorCords, setErrorCords } = useImgContext();
   const { x, y } = useMousePosition(selectRef);
 
   const handleCordClick = () => {
-    setCOrds({ x: x, y: y });
+    setErrorCords({ x: x, y: y });
   };
 
   return (
@@ -47,14 +46,14 @@ export const ImgComponent = () => {
               width: 800,
               height: 600,
               position: "relative",
-              overflow: "hidden"
+              overflow: "hidden",
             }}
             className="relative"
           >
-            {cords.x && cords.y ? (
+            {errorCords.x && errorCords.y ? (
               <div
                 className="w-5 h-5 rounded-full bg-red-500 absolute"
-                style={{ top: cords.y, left: cords.x }}
+                style={{ top: errorCords.y, left: errorCords.x }}
               ></div>
             ) : null}
           </div>

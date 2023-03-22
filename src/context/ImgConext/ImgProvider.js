@@ -10,6 +10,7 @@ export default function ImgProvider({ children }) {
   const [errValue, setErrValue] = useState("");
   const [objErr, setObjErr] = useState();
   const [allObjErr, setAllObjErr] = useState([]);
+  const [errorCords, setErrorCords] = useState({ x: null, y: null });
 
   const handleCLick = async (color, picName, func) => {
     if (color === "blue") {
@@ -54,7 +55,7 @@ export default function ImgProvider({ children }) {
     setObj(mainObj.defectButtonRecords);
     setObjErr(mainObj.partDefects);
 
-    setPicName(mainObj.defectButtonRecords[0].picId)
+    setPicName(mainObj.defectButtonRecords[0].picId);
     setAllObjErr([]);
     setPreviousObj([]);
   };
@@ -68,12 +69,14 @@ export default function ImgProvider({ children }) {
         picName: picName,
         value: errValue,
         previousObj: previousObj,
+        errorCords: errorCords,
         setMainObj: setMainObj,
         setObj: setObj,
         setObjErr: setObjErr,
         setPicName: setPicName,
         setPreviousObj: setPreviousObj,
         setValue: setErrValue,
+        setErrorCords: setErrorCords,
         handleCLick: handleCLick,
         prevClick: prevClick,
         returnMainObj: returnMainObj,
