@@ -20,11 +20,10 @@ function useMediaQuery(query) {
     handleChange();
 
     matchMedia.addEventListener("change", handleChange);
-    console.log(matches);
     return () => {
-        matchMedia.removeEventListener("change", handleChange);
+      matchMedia.removeEventListener("change", handleChange);
     };
-  }, [query , matches]);
+  }, [query, matches]);
 
   return matches;
 }

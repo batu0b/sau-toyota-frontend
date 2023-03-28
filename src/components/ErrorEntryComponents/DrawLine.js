@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export default function DrawLine({ x, y, x0, y0, w, h }) {
+export const DrawLine = ({ x, y, x0, y0, w, h }) => {
   const canvas = useRef();
   let ctx = null;
 
@@ -45,4 +45,4 @@ export default function DrawLine({ x, y, x0, y0, w, h }) {
   } else {
     return;
   }
-}
+};

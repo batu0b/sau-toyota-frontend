@@ -24,7 +24,7 @@ export const ImgComponent = () => {
     >
       <img
         style={{ width: 800, height: 600, position: "absolute" }}
-        src={`./${picName}.png`}
+        src={`/${picName}.png`}
         alt=""
       />
 

@@ -22,7 +22,7 @@ const TerminalTableComponent = ({ data }) => {
   const navigate = useNavigate();
   const RenderRow = ({ index, data, style }) => {
     return (
-      <tr className="flex  justify-between" style={style}>
+      <tr key={index} className="flex  justify-between" style={style}>
         <td className=" border-b border-r flex justify-center items-center  w-[15%] border-black/30">
           ({data[index]?.depCode}) {data[index]?.depName}
         </td>
@@ -91,4 +91,3 @@ const TerminalTableComponent = ({ data }) => {
 };
 
 export default TerminalTableComponent;
-// https://codesandbox.io/s/dynamic-size-of-react-window-list-items-64o9p?file=/src/Chat.js

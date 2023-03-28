@@ -45,3 +45,27 @@
 .ErrorEntrySideBttn {
   @apply flex font-semibold border-black border w-full text-lg flex-col justify-center items-center p-3 rounded-md uppercase;
 }
+
+.ModalFormInputs {
+  @apply p-3 flex justify-between gap-2 items-center;
+}
+
+.th,
+.td {
+  @apply flex justify-center items-center border-b border-black border-r;
+}
+.tr.td:last-child {
+  @apply border-b-0;
+}
+
+.table {
+  display: inline-block;
+  border-spacing: 0;
+  border: 1px solid black;
+  overflow-y: hidden;
+  @apply text-center;
+}
+
+.tr.td:last-child {
+  border-bottom: 0;
+}

@@ -22,6 +22,7 @@
     "react-scripts": "5.0.1",
     "react-select-datepicker": "^2.1.2",
     "react-simple-keyboard": "^3.5.41",
+    "react-table": "^7.8.0",
     "react-virtualized-auto-sizer": "^1.0.7",
     "react-window": "^1.8.8",
     "web-vitals": "^2.1.4",

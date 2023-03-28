@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useImgContext } from "../../context/ImgConext/ImgContext";
 import DialogRaw from "../DialogRaw";
-import DrawLine from "./DrawLine";
+import { DrawLine } from "./DrawLine";
 
 export const DrawBox = ({ box }) => {
   const { handleCLick, objErr, setValue, value } = useImgContext();

@@ -1,26 +1,30 @@
 import { Field, Formik, Form } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CustomDatePicker } from "../components/inputs/CustomDatePicker";
 import { useTranslation } from "react-i18next";
 import { CustomInputText } from "../components/inputs/CustomInputText";
 import { VirtualKeyboard } from "../components/VirtualKeyboard";
 import DialogRaw from "../components/DialogRaw";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import ExampleData from "../db/exampleData.json";
 import { TerminalLoginSchema } from "../validations";
-import { Snackbar, Typography } from "@mui/material";
 import { SnackBarComponent } from "../components/SnackBar";
+import { useFetch } from "../hooks/useFetch";
+import { apiUrl } from "../db/config";
 
 export default function TerminalLoginPage() {
+  const [isAuth, setIsAuth] = useOutletContext();
   const [focusedField, setFocusedField] = useState(null);
+  const [options, setOptions] = useState([]);
   const [open, setOpen] = useState(true);
   const [snackOptions, setSnackOptions] = useState({
     show: false,
     message: "",
     messageType: "",
   });
+  const { depCode, filterCode } = useParams();
+  const { data } = useFetch(`${apiUrl}TerminalData?depCode=${depCode}`);
   const { t } = useTranslation();
-  const { state } = useLocation();
   const { ExampleUser } = ExampleData;
   const navigate = useNavigate();
 
@@ -36,29 +40,30 @@ export default function TerminalLoginPage() {
     }
   };
   //dummy selectyor data
-  const options = state.dummyOptionData.filterBaseds.map((item) => {
-    if (item.termName) {
-      return item.termName;
-    } else {
-      return "Dummy Select";
+  useEffect(() => {
+    if (data) {
+      data[0]?.filterBaseds.map((item) => {
+        if (item.termName) {
+          setOptions((prev) => [...prev, item.termName]);
+        } else {
+          setOptions((prev) => [...prev, "Dummy Select"]);
+        }
+      });
     }
-  });
+  }, [data]);
   //formik custom submit
   const handleOnSubmit = async (values, actions) => {
-    console.log(actions);
     const user = ExampleUser.find(
       (person) =>
         person.password === values.password &&
         person.sicilno === values.RegistrationNo
     );
-    console.log(user);
     if (user) {
       alert(JSON.stringify(values));
       await actions.resetForm();
-      navigate("/e", {
-        state: {
-          assemblyNo: values.assemblyNo,
-        },
+      setIsAuth(true);
+      navigate(`/cvqsterminal/defectentry/${depCode}/${filterCode}`, {
+        replace: true,
       });
     } else {
       setSnackOptions({
@@ -89,13 +94,7 @@ export default function TerminalLoginPage() {
             validationSchema={TerminalLoginSchema}
             onSubmit={handleOnSubmit}
           >
-            {({
-              values,
-              handleChange,
-              setFieldValue,
-              handleSubmit,
-              errors,
-            }) => {
+            {({ values, handleChange, setFieldValue, handleSubmit }) => {
               return (
                 <Form
                   onSubmit={handleSubmit}

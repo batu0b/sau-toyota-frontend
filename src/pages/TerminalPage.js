@@ -5,12 +5,8 @@ import { apiUrl } from "../db/config";
 import { useFetch } from "../hooks/useFetch";
 
 export default function TerminalPage() {
-  const { data, error, isLoading } = useFetch(`${apiUrl}TerminalData`);
+  const { data, isLoading } = useFetch(`${apiUrl}TerminalData`);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
 
   return (
     <div className="App">
