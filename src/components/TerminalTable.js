@@ -1,6 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { memo, useLayoutEffect, useState } from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { FixedSizeList as List } from "react-window";
+import { areEqual, FixedSizeList as List } from "react-window";
 import { useNavigate } from "react-router-dom";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,8 @@ const TerminalTableComponent = ({ data }) => {
   }, [matches]);
 
   const navigate = useNavigate();
-  const RenderRow = ({ index, data, style }) => {
+  const RenderRow = memo((props) => {
+    const { index, data, style } = props;
     return (
       <tr key={index} className="flex  justify-between" style={style}>
         <td className=" border-b border-r flex justify-center items-center  w-[15%] border-black/30">
@@ -49,7 +50,7 @@ const TerminalTableComponent = ({ data }) => {
         </td>
       </tr>
     );
-  };
+  }, areEqual);
 
   return (
     <div className={`h-[calc(100vh-13rem)]`}>
@@ -74,7 +75,6 @@ const TerminalTableComponent = ({ data }) => {
         {({ height, width }) => {
           return (
             <List
-              className="no-scrollbar"
               height={height}
               itemCount={data.length}
               itemSize={itemHeight}

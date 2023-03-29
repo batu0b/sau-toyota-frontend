@@ -52,20 +52,15 @@
 
 .th,
 .td {
-  @apply flex justify-center items-center border-b border-black border-r;
+  @apply border-b place-items-center border-black border-r flex justify-center !important;
 }
 .tr.td:last-child {
   @apply border-b-0;
 }
-
 .table {
-  display: inline-block;
-  border-spacing: 0;
-  border: 1px solid black;
-  overflow-y: hidden;
-  @apply text-center;
+  @apply text-center w-full inline-block  relative border-spacing-0 border border-b-0 border-black h-[75vh];
 }
-
 .tr.td:last-child {
   border-bottom: 0;
 }
+

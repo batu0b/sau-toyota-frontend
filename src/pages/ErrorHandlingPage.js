@@ -21,19 +21,23 @@ export default function ErrorHandlingPage() {
       {
         Header: "Bildiren",
         accessor: "depCode",
+        width: 100,
       },
       {
         Header: "Body",
         accessor: "bodyNo",
+        width: 120,
       },
 
       {
         Header: "Assy",
         accessor: "assyNo",
+        width: 80,
       },
       {
         Header: "Vin No",
         accessor: "vinNo",
+        width: 200,
       },
       {
         Header: "Renk",
@@ -50,42 +54,47 @@ export default function ErrorHandlingPage() {
             </div>
           );
         },
+        width: 80,
       },
       {
         Header: "Mdl",
         accessor: "modelCode",
+        width: 80,
       },
       {
         Header: "Sicil",
         accessor: "localId",
+        width: 120,
       },
       {
         Header: "Parca",
-        accessor: "g",
+        accessor: "parca",
+        width: 60,
       },
       {
         Header: "Spot",
-        accessor: "f",
+        accessor: "spot",
+        width: 60,
       },
       {
         Header: "Gun",
-        accessor: "d",
+        accessor: "gun",
       },
       {
         Header: "Arc",
-        accessor: "s",
+        accessor: "arc",
       },
       {
         Header: "Arc Gun",
-        accessor: "a",
+        accessor: "arcgun",
       },
       {
         Header: "Hata",
-        accessor: "ss",
+        accessor: "hata",
       },
       {
         Header: "Renk",
-        accessor: "ddaa",
+        accessor: "renk",
       },
       {
         Header: "Saat",
@@ -95,7 +104,7 @@ export default function ErrorHandlingPage() {
         },
       },
       {
-        Header: "Hata Turu",
+        Header: "h Turu",
         accessor: "defectType",
       },
       {
@@ -111,10 +120,10 @@ export default function ErrorHandlingPage() {
         accessor: "NULL",
         Cell: () => {
           return (
-            <select className="py-0 w-full">
-              <option value="" key="" disabled selected hidden></option>
+            <select defaultValue={""} className="py-0 w-full">
+              <option value="" key="1" disabled hidden></option>
 
-              <option value="dummy" key="">
+              <option value="dummy" key="2">
                 dummy
               </option>
             </select>
@@ -150,8 +159,9 @@ export default function ErrorHandlingPage() {
   );
 
   return (
-    <span className="w-full">
+    <div className="w-full h-screen flex flex-col overflow-y-hidden  ">
       {data && <ErrorTable columns={columns} data={sortedData} />}
-    </span>
+      <div className="bg-white fixed bottom-0  w-full h-[25vh]">asd</div>
+    </div>
   );
 }

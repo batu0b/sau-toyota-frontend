@@ -40,7 +40,6 @@ export const DeleteIco = ({ className, ...props }) => {
   );
 };
 export const PencilIco = ({ className, ...props }) => {
-  console.log(className);
   return (
     <svg
       {...props}
