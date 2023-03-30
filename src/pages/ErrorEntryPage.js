@@ -10,7 +10,7 @@ import {
   ImgComponent,
 } from "../components/ErrorEntryComponents";
 import { SnackBarComponent } from "../components/SnackBar";
-import { red } from "@mui/material/colors";
+
 export default function ErrorEntryPage() {
   const { data, isLoading } = useFetch(`${apiUrl}BoxData`);
   const {
@@ -51,7 +51,7 @@ export default function ErrorEntryPage() {
       if (saved) {
         localStorage.removeItem("saved");
         setSnackOptions({
-          message: "Suyccess",
+          message: "Success",
           messageType: "success",
           show: true,
         });
@@ -153,7 +153,12 @@ export default function ErrorEntryPage() {
                   <button onClick={returnMainObj} className="ErrorPageBtn">
                     Model Ilk Resmi
                   </button>
-                  <button className="ErrorPageBtn">Hata Listesi</button>
+                  <button
+                    onClick={() => navigate("errorlist")}
+                    className="ErrorPageBtn"
+                  >
+                    Hata Listesi
+                  </button>
                   <button className="ErrorPageBtn">Temizle</button>
                   <button
                     onClick={() => setLargeFont(true)}

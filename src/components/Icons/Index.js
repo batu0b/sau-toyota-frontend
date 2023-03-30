@@ -1,5 +1,90 @@
 import React from "react";
 
+export const Ico = ({
+  hasGradient,
+  className,
+  stops,
+  children,
+  rotateGradient,
+  ...props
+}) => {
+  const gradientId = `gradient-${Math.random().toString(36).substr(2, 9)}`;
+  return (
+    <svg
+      className={`w-6 h-6 ${className}`}
+      viewBox="0 0 512 512"
+      height="1em"
+      width="1em"
+      stroke=""
+      {...props}
+      fill={hasGradient ? `url(#${gradientId})` : `currentColor`}
+    >
+      {hasGradient && (
+        <defs>
+          <linearGradient
+            id={gradientId}
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+            gradientTransform={`rotate(${
+              typeof rotateGradient !== `undefined` ? rotateGradient : 25
+            })`}
+          >
+            {stops ? (
+              <>
+                {stops.map((stop, index) => (
+                  <stop
+                    key={index}
+                    offset={
+                      stop?.offset
+                        ? `${stop.offset}%`
+                        : index === 0
+                        ? `0%`
+                        : index === stops.length
+                        ? `100%`
+                        : `${index * (100 / (stops.length - 1))}%`
+                    }
+                    style={{
+                      stopColor: stop.color,
+                      stopOpacity: stop?.opacity ? stop.opacity : 1,
+                    }}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                <stop
+                  offset={`0%`}
+                  style={{
+                    stopColor: `#005590`,
+                    stopOpacity: 1,
+                  }}
+                />
+                <stop
+                  offset={`50%`}
+                  style={{
+                    stopColor: `#007b91`,
+                    stopOpacity: 1,
+                  }}
+                />
+                <stop
+                  offset={`100%`}
+                  style={{
+                    stopColor: `#56a730`,
+                    stopOpacity: 1,
+                  }}
+                />
+              </>
+            )}
+          </linearGradient>
+        </defs>
+      )}
+      {children}
+    </svg>
+  );
+};
+
 export const SaveIco = ({ className, ...props }) => {
   return (
     <svg
@@ -56,5 +141,13 @@ export const PencilIco = ({ className, ...props }) => {
         d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
       />
     </svg>
+  );
+};
+
+export const TriangleIco = (props) => {
+  return (
+    <Ico {...props}>
+      <path d="M464 464H48a16 16 0 01-14.07-23.62l208-384a16 16 0 0128.14 0l208 384A16 16 0 01464 464z" />
+    </Ico>
   );
 };

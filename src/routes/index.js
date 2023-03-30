@@ -3,6 +3,7 @@ import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { VirtualKeyboard } from "../components/VirtualKeyboard";
 import AuthLayout from "../layouts/AuthLayout";
 import ErrorEntryPage from "../pages/ErrorEntryPage";
+import ErrorHandlingPage from "../pages/ErrorHandlingPage";
 import TerminalLoginPage from "../pages/TerminalLoginPage";
 import TerminalPage from "../pages/TerminalPage";
 export default function Index() {
@@ -19,6 +20,10 @@ export default function Index() {
           <Route
             path="/cvqsterminal/defectentry/:depCode/:filterCode"
             element={<ErrorEntryPage />}
+          />
+          <Route
+            path="/cvqsterminal/defectentry/:depCode/:filterCode/errorlist"
+            element={<ErrorHandlingPage />}
           />
         </Route>
       </Routes>

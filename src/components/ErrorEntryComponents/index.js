@@ -1,3 +1,4 @@
+export { EntryErrorCords } from "./EntryErrorCords";
 export { ErrorModalForm } from "./ErrorModalForm";
 export { ImgComponent } from "./ImgComponent";
 export { DrawLine } from "./DrawLine";

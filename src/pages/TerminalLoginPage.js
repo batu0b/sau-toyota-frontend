@@ -76,7 +76,7 @@ export default function TerminalLoginPage() {
 
   return (
     <div className="h-screen flex justify-center  items-center">
-      <div className="w-1/2 border-black flex flex-col lga:w-5/6 rounded-md border h-fit ">
+      <div className="w-5/6 border-black flex flex-col rounded-md border h-fit ">
         <header className="p-4 border-b uppercase  text-center text-red-600 font-bold text-lg border-black">
           cvqs (ttmt)
         </header>

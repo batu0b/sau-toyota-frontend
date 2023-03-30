@@ -103,7 +103,7 @@ export default function ErrorTable({ columns, data }) {
 
       <div className="tr w-full">
         <div className="td h-8 w-full border-t fixed  " colSpan="10000">
-          <span className="absolute right-7 "> {rows.length} rows</span>
+          <span className="absolute right-7 "> Total Rows {rows.length} </span>
         </div>
       </div>
     </div>
