@@ -8,8 +8,7 @@ import { useTranslation } from "react-i18next";
 const TerminalTableComponent = ({ data }) => {
   const matches = useMediaQuery("(max-width: 1023px)");
   const [itemHeight, setItemHeight] = useState(null);
-
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useLayoutEffect(() => {
     if (matches) {
@@ -23,13 +22,14 @@ const TerminalTableComponent = ({ data }) => {
   const RenderRow = memo((props) => {
     const { index, data, style } = props;
     return (
-      <tr key={index} className="flex  justify-between" style={style}>
-        <td className=" border-b border-r flex justify-center items-center  w-[15%] border-black/30">
+      <div key={index} className="flex  justify-between" style={style}>
+        <div className=" border-b border-r flex justify-center items-center  w-[15%] border-black/30">
           ({data[index]?.depCode}) {data[index]?.depName}
-        </td>
-        <td className="border-b flex gap-5 px-3  items-center flex-wrap   w-[85%] border-black/30">
-          {data[index].filterBaseds.map((item) => (
+        </div>
+        <div className="border-b flex gap-5 px-3  items-center flex-wrap   w-[85%] border-black/30">
+          {data[index].filterBaseds.map((item, index) => (
             <span
+              key={index}
               onClick={() =>
                 navigate(
                   `/cvqsterminal/${data[index]?.depCode}/${item.filterCode}`,
@@ -47,25 +47,25 @@ const TerminalTableComponent = ({ data }) => {
               ) : null}
             </span>
           ))}
-        </td>
-      </tr>
+        </div>
+      </div>
     );
   }, areEqual);
 
   return (
-    <div className={`h-[calc(100vh-13rem)]`}>
-      <div className="flex flex-col h-20 font-medium  border    border-black/30 text-lg text-red-600 justify-between uppercase">
+    <div className={`h-[calc(100vh-15rem)]`}>
+      <div className="flex flex-col h-28 font-medium  border    border-black/30 text-lg text-red-600 justify-between uppercase">
         <div className="w-full justify-center underline h-full flex items-center">
           {t(`Alltermianls`)}
         </div>
         <div className="flex items-center   ">
           <div
-            className={`basis-[20%] flex items-center p-2 justify-center h-full border-black/30 border text-center`}
+            className={`basis-[15%] flex items-center p-2 justify-center h-full border-black/30 border text-center`}
           >
             {t(`Bychapter`)}
           </div>
           <div
-            className={`basis-[80%] flex items-center p-2 justify-center h-full border-black/30 border text-center`}
+            className={`basis-[85%] flex items-center p-2 justify-center h-full border-black/30 border text-center`}
           >
             {t(`Basedonfilter`)}
           </div>

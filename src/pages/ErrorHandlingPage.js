@@ -2,7 +2,12 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import ErrorTable from "../components/ErrorTable";
-import { DeleteIco, PencilIco, SaveIco } from "../components/Icons/Index";
+import {
+  DeleteIco,
+  PencilIco,
+  SaveIco,
+  TriangleIco,
+} from "../components/Icons/Index";
 import { apiUrl } from "../db/config";
 import { useFetch } from "../hooks/useFetch";
 
@@ -18,7 +23,7 @@ export default function ErrorHandlingPage() {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Bildiren",
+        Header: t("Notifier"),
         accessor: "depCode",
         width: 100,
       },
@@ -39,7 +44,7 @@ export default function ErrorHandlingPage() {
         width: 200,
       },
       {
-        Header: "Renk",
+        Header: t("Color"),
         accessor: "colorExtCode",
         Cell: ({ value, row, data }) => {
           return (
@@ -61,12 +66,12 @@ export default function ErrorHandlingPage() {
         width: 80,
       },
       {
-        Header: "Sicil",
+        Header: t("Registry"),
         accessor: "localId",
         width: 120,
       },
       {
-        Header: "Parca",
+        Header: t("Part"),
         accessor: "parca",
         width: 60,
       },
@@ -76,7 +81,7 @@ export default function ErrorHandlingPage() {
         width: 60,
       },
       {
-        Header: "Gun",
+        Header: t("Day"),
         accessor: "gun",
       },
       {
@@ -84,34 +89,34 @@ export default function ErrorHandlingPage() {
         accessor: "arc",
       },
       {
-        Header: "Arc Gun",
+        Header: `Arc ${t("Day")}`,
         accessor: "arcgun",
       },
       {
-        Header: "Hata",
+        Header: t("Error"),
         accessor: "hata",
       },
       {
-        Header: "Renk",
+        Header: t("Color"),
         accessor: "renk",
       },
       {
-        Header: "Saat",
+        Header: t("Hour"),
         accessor: "cdate",
         Cell: ({ value }) => {
           return <span>{value.slice(11, 16)}</span>;
         },
       },
       {
-        Header: "h Turu",
+        Header: t("ErrorType"),
         accessor: "defectType",
       },
       {
-        Header: "Hata Sor",
+        Header: t("AskError"),
         accessor: "defrespName",
       },
       {
-        Header: "Alt Sorunmlu",
+        Header: t("SubManaging"),
         accessor: "ALTSORUMLU",
       },
       {
@@ -130,7 +135,7 @@ export default function ErrorHandlingPage() {
         },
       },
       {
-        Header: "Kaydet",
+        Header: t("Save"),
         accessor: "Kaydet",
         Cell: () => {
           return (
@@ -142,11 +147,11 @@ export default function ErrorHandlingPage() {
         },
       },
       {
-        Header: "Islem",
+        Header: t("Process"),
         accessor: "Islem",
         Cell: () => {
           return (
-            <div className="flex justify-between items-center h-full    ">
+            <div className="flex justify-between items-center h-full  w-full   ">
               <DeleteIco className="bg-red-500 text-white basis-2/5  flex " />
               <PencilIco className="bg-red-500 text-white basis-2/5 " />
             </div>
@@ -165,35 +170,35 @@ export default function ErrorHandlingPage() {
         <div className="h-full items-center p-3  flex gap-6  ">
           <span className="flex flex-col  justify-evenly h-full">
             <label className="flex items-center justify-end gap-2">
-              <span>Montaj No</span>
+              <span>{t("assemblyNo")}</span>
               <input type="text" />
-              <button className="bg-gray-300 w-36 h-full rounded-md border border-black ">
-                ARA
+              <button className="bg-gray-300 min-w-[9rem] w-36 h-full rounded-md border border-black ">
+                {t("Search")}
               </button>
             </label>
             <label className="flex items-center justify-end gap-2">
               <span>Body No</span>
               <input type="text" />
-              <button className="bg-gray-300 w-36 h-full rounded-md border border-black ">
-                ARA
+              <button className="bg-gray-300 min-w-[9rem] w-36 h-full rounded-md border border-black ">
+                {t("Search")}
               </button>
             </label>
           </span>
           <span className="flex gap-y-2 flex-col h-full justify-evenly">
-            <button className="bg-red-600 w-36 h-full rounded-md border border-black ">
-              asd
+            <button className="bg-red-600 flex justify-center items-center text-white w-36 h-full rounded-md border border-black ">
+              <TriangleIco />
             </button>
-            <button className="bg-red-600 w-36 h-full rounded-md border border-black ">
-              asd
+            <button className="bg-red-600 text-white w-36 h-full flex justify-center items-center rounded-md border border-black ">
+              <TriangleIco className="rotate-180" />
             </button>
           </span>
-          <button className="ErrorTableBtn">Arac Listesi</button>
-          <button className="ErrorTableBtn ">Manuel Hata</button>
-          <button className="ErrorTableBtn ">Coklu Hata</button>
-          <button className="ErrorTableBtn ">Hata Listesi</button>
-          <button className="ErrorTableBtn ">Hata Kopya</button>
+          <button className="ErrorTableBtn">{t("CarList")}</button>
+          <button className="ErrorTableBtn ">{t("ManuelError")}</button>
+          <button className="ErrorTableBtn ">{t("MultipleError")}</button>
+          <button className="ErrorTableBtn ">{t("ErrorList")}</button>
+          <button className="ErrorTableBtn ">{t("ErrorCopy")}</button>
           <button onClick={() => navigate(-1)} className="ErrorTableBtn">
-            Cikis
+            {t("Exit")}
           </button>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useImgContext } from "../../context/ImgConext/ImgContext";
 import { ErrrorModalSchema } from "../../validations";
@@ -10,6 +11,7 @@ import { VirtualKeyboard } from "../VirtualKeyboard";
 export const ErrorModalForm = ({ componyName, show }) => {
   const [focusedField, setFocusedField] = useState(null);
   const { errorCords, value } = useImgContext();
+  const { t } = useTranslation();
   const dummyA = [`1`, `2`, `3`, ` 4`, `5`, `6`, `7`, `8`, `9`];
   const navigate = useNavigate();
   const handleOnSubmit = (values) => {
@@ -56,7 +58,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         type="text"
                         component={CustomSelectInput}
                         options={dummyA}
-                        label={"Hata Sorumlusu"}
+                        label={t("ErrorManaging")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
                         optionClass="bg-[#c5fec8]"
@@ -66,7 +68,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         type="text"
                         component={CustomSelectInput}
                         options={dummyA}
-                        label={"Hata Sinifi"}
+                        label={t("ErrorClass")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
                         optionClass="bg-[#c5fec8]"
@@ -76,7 +78,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         type="text"
                         component={CustomSelectInput}
                         options={dummyA}
-                        label={"Exit Department"}
+                        label={t("ExitDepartment")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
                         optionClass="bg-[#c5fec8]"
@@ -86,7 +88,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         type="text"
                         component={CustomSelectInput}
                         options={dummyA}
-                        label={"Tamir Tipi"}
+                        label={t("RepairType")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
                         optionClass="bg-[#c5fec8]"
@@ -99,7 +101,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                           className="w-8 h-8 bg-transparent"
                           type="checkbox"
                         />
-                        <label>Sik Gelen Hata</label>
+                        <label>{t("FrequentError")}</label>
                       </span>
                       <span className="flex items-center justify-between">
                         <span className="flex gap-2">
@@ -126,14 +128,14 @@ export const ErrorModalForm = ({ componyName, show }) => {
                           type="submit"
                           className="ErrorEntrySideBttn bg-red-600 text-white "
                         >
-                          Kaydet
+                          {t("Save")}
                         </button>
                         <button
                           type="button"
                           onClick={handlaCancel}
                           className="ErrorEntrySideBttn bg-red-600 text-white"
                         >
-                          Iptal
+                          {t("Cancel")}
                         </button>
                       </span>
                       <Field
@@ -141,7 +143,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         type="text"
                         component={CustomSelectInput}
                         options={dummyA}
-                        label={"Tamir Metodu"}
+                        label={t("RepairMethod")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
                         optionClass="bg-[#c5fec8]"
@@ -156,7 +158,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                       component={CustomInputText}
                       className="flex w-full gap-4 items-center"
                       labelClass="w-[20%] rounded-md "
-                      label="Aciklama"
+                      label={t("Description")}
                       inputClass="p-1 rounded-md w-full "
                     />{" "}
                     <Field
@@ -166,7 +168,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                       component={CustomInputText}
                       className="flex w-full gap-4 items-center"
                       labelClass="w-[20%] rounded-md "
-                      label="Yapilan Islem"
+                      label={t("Process")}
                       inputClass="p-1 rounded-md w-full "
                     />{" "}
                   </div>

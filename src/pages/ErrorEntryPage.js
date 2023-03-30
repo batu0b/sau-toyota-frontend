@@ -10,6 +10,7 @@ import {
   ImgComponent,
 } from "../components/ErrorEntryComponents";
 import { SnackBarComponent } from "../components/SnackBar";
+import { useTranslation } from "react-i18next";
 
 export default function ErrorEntryPage() {
   const { data, isLoading } = useFetch(`${apiUrl}BoxData`);
@@ -94,6 +95,8 @@ export default function ErrorEntryPage() {
     }
   }, [data]);
 
+  const { t } = useTranslation();
+
   const HandleErrorSave = () => {
     setClicked(true);
     setShow(true);
@@ -114,14 +117,15 @@ export default function ErrorEntryPage() {
                     {" "}
                     <span className="ErrorEntryTopBttn">
                       {" "}
-                      <label>Montaj No</label> {ExampleData.ExampleData.assyNo}
+                      <label>{t("assemblyNo")}</label>{" "}
+                      {ExampleData.ExampleData.assyNo}
                     </span>{" "}
                     <span className="ErrorEntryTopBttn text-white bg-blue-600">
                       {" "}
                       <label>Body No</label> {ExampleData.ExampleData.bodyNo}
                     </span>
                     <span className="uppercase text-black/60 text-xl">
-                      Hata giris ekrani
+                      {t("ErrorEntryPage")}
                     </span>
                   </div>
 
@@ -129,7 +133,7 @@ export default function ErrorEntryPage() {
                     style={{ background: `${ExampleData.ExampleData.bgColor}` }}
                     className={` ErrorEntryTopBttn text-white drop-shadow-lg   `}
                   >
-                    <label>Renk</label>
+                    <label>{t("Color")} </label>
                     {ExampleData.ExampleData.bgColor}
                   </span>
                 </div>
@@ -140,7 +144,7 @@ export default function ErrorEntryPage() {
                     disabled={previousObj.length === 0}
                     onClick={prevClick}
                   >
-                    {"<"} Geri
+                    {"<"} {t("Back")}
                   </button>
                   <button
                     onClick={() =>
@@ -148,23 +152,23 @@ export default function ErrorEntryPage() {
                     }
                     className="ErrorPageBtn"
                   >
-                    Cikis
+                    {t("Exit")}
                   </button>{" "}
                   <button onClick={returnMainObj} className="ErrorPageBtn">
-                    Model Ilk Resmi
+                    {t("ModelFirstImage")}
                   </button>
                   <button
                     onClick={() => navigate("errorlist")}
                     className="ErrorPageBtn"
                   >
-                    Hata Listesi
+                    {t("ErrorList")}
                   </button>
-                  <button className="ErrorPageBtn">Temizle</button>
+                  <button className="ErrorPageBtn">{t("Clear")}</button>
                   <button
                     onClick={() => setLargeFont(true)}
                     className="ErrorPageBtn"
                   >
-                    Buyuk Font
+                    {t("LargeFont")}
                   </button>
                 </span>
               </div>
@@ -199,13 +203,13 @@ export default function ErrorEntryPage() {
                     </div>
                     <div className="flex flex-col gap-4">
                       <button className="ErrorEntrySideBttn text-black/50 border-black/50">
-                        Hizli Kaydet
+                        {t("QuickSave")}
                       </button>
                       <button
                         disabled
                         className="ErrorEntrySideBttn text-black/50 border-black/50 "
                       >
-                        Kaydet Ve gec
+                        {t("SaveAndSkip")}
                       </button>
                       <button
                         onClick={HandleErrorSave}
@@ -216,7 +220,7 @@ export default function ErrorEntryPage() {
                             : ""
                         }`}
                       >
-                        Hata Kayit
+                        {t("ErrorEntry")}
                       </button>
                     </div>
                   </div>
@@ -227,12 +231,14 @@ export default function ErrorEntryPage() {
                       value={ExampleData.ExampleData.assyNo}
                       type="text"
                     />
-                    <button className="ErrorEntrySideBttn">ara</button>
                     <button className="ErrorEntrySideBttn">
-                      terminal ilk resim
+                      {t("Search")}
                     </button>
                     <button className="ErrorEntrySideBttn">
-                      sik gelen hata
+                      {t("TerminalFirstImage")}
+                    </button>
+                    <button className="ErrorEntrySideBttn">
+                      {t("FrequentError")}
                     </button>{" "}
                     <button disabled className="ErrorEntrySideBttn">
                       manifest
@@ -260,14 +266,15 @@ export default function ErrorEntryPage() {
                 {" "}
                 <span className="ErrorEntryTopBttn">
                   {" "}
-                  <label>Montaj No</label> {ExampleData.ExampleData.assyNo}
+                  <label>{t("assemblyNo")}</label>{" "}
+                  {ExampleData.ExampleData.assyNo}
                 </span>{" "}
                 <span className="ErrorEntryTopBttn text-white bg-blue-600">
                   {" "}
                   <label>Body No</label> {ExampleData.ExampleData.bodyNo}
                 </span>
                 <span className="uppercase text-black/60 text-xl">
-                  Hata giris ekrani
+                  {t("ErrorEntryPage")}
                 </span>
               </div>
 
@@ -275,7 +282,7 @@ export default function ErrorEntryPage() {
                 style={{ background: `${ExampleData.ExampleData.bgColor}` }}
                 className={` ErrorEntryTopBttn text-white drop-shadow-lg   `}
               >
-                <label>Renk</label>
+                <label>{t("Color")}</label>
                 {ExampleData.ExampleData.bgColor}
               </span>
               <h1 className="text-red-600 text-xl font-normal">
@@ -298,14 +305,14 @@ export default function ErrorEntryPage() {
                     onClick={() => setLargeFont(false)}
                     className="ErrorEntrySideBttn bg-red-600 text-white"
                   >
-                    Hata Girisi
+                    {t("ErrorEntry")}
                   </button>
                   <input
                     className="p-2 text-xl"
                     value={ExampleData.ExampleData.assyNo}
                     type="text"
                   />
-                  <button className="ErrorEntrySideBttn">Ara</button>
+                  <button className="ErrorEntrySideBttn"> {t("Search")}</button>
                 </div>
               </div>
             </div>

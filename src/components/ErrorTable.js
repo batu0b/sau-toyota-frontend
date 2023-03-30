@@ -85,7 +85,6 @@ export default function ErrorTable({ columns, data }) {
       <div className="h-[calc(100%-5rem)]" {...getTableBodyProps()}>
         <AutoSizer style={{ height: "100%" }}>
           {({ height, width }) => {
-            console.log(height);
             return (
               <FixedSizeList
                 height={height}
