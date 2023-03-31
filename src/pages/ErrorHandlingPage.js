@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import ErrorTable from "../components/ErrorTable";
 import {
   DeleteIco,
   PencilIco,
@@ -10,6 +9,7 @@ import {
 } from "../components/Icons/Index";
 import { apiUrl } from "../db/config";
 import { useFetch } from "../hooks/useFetch";
+import Table from "../components/Table";
 
 export default function ErrorHandlingPage() {
   const { data } = useFetch(`${apiUrl}ErrorData`);
@@ -164,7 +164,7 @@ export default function ErrorHandlingPage() {
 
   return (
     <div className="w-full h-screen flex flex-col overflow-y-hidden  ">
-      {data && <ErrorTable columns={columns} data={sortedData} />}
+      {data && <Table columns={columns} data={sortedData} />}
 
       <div className="bg-white fixed bottom-0 overflow-auto   w-full h-[25vh]">
         <div className="h-full items-center p-3  flex gap-6  ">

@@ -1,16 +1,19 @@
-import React, { memo, useRef } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
 import { useBlockLayout, useResizeColumns, useTable } from "react-table";
-import { FixedSizeList, areEqual } from "react-window";
+import { areEqual, VariableSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 
-export default function ErrorTable({
+export default function Table({
   columns,
   data,
   height,
   className,
   full = false,
-  rowheight,
+  rowheightAuto = false,
 }) {
+  const listRef = useRef(null);
+  const rowHeights = useRef({ 0: 100 });
+
   const scrollbarWidth = () => {
     //https://davidwalsh.name/detect-scrollbar-width
     const scrollDiv = document.createElement("div");
@@ -52,9 +55,17 @@ export default function ErrorTable({
   );
 
   const RenderRow = memo((props) => {
-    const { index, style } = props;
+    const rowRef = useRef(null);
+    const { index, style, setRowHeight } = props;
     const row = rows[index];
     prepareRow(row);
+
+    useEffect(() => {
+      if (rowRef.current) {
+        setRowHeight(index, rowRef.current.clientHeight);
+      }
+      // eslint-disable-next-line
+    }, [rowRef]);
 
     return (
       <div
@@ -66,13 +77,27 @@ export default function ErrorTable({
         {row.cells.map((cell) => {
           return (
             <div {...cell.getCellProps()} className="td">
-              {cell.render("Cell")}
+              <span className="w-full" ref={rowRef}>
+                {cell.render("Cell")}
+              </span>
             </div>
           );
         })}
       </div>
     );
   }, areEqual);
+
+  const getRowHeight = useCallback((index) => {
+    if (rowheightAuto) {
+      return rowHeights.current[index] + 20 || 80;
+    }
+    return 55;
+  }, []);
+
+  const setRowHeight = useCallback((index, size) => {
+    listRef.current?.resetAfterIndex(index);
+    rowHeights.current = { ...rowHeights.current, [index]: size };
+  }, []);
 
   return (
     <div
@@ -87,7 +112,10 @@ export default function ErrorTable({
             className="tr h-12 font-bold w-full"
           >
             {headerGroup.headers.map((column) => (
-              <div {...column.getHeaderProps()} className="th w-full">
+              <div
+                {...column.getHeaderProps()}
+                className={`th w-full ${column.className}`}
+              >
                 {column.render("Header")}
               </div>
             ))}
@@ -98,15 +126,23 @@ export default function ErrorTable({
         <AutoSizer style={{ height: "100%" }}>
           {({ height, width }) => {
             return (
-              <FixedSizeList
+              <VariableSizeList
+                ref={listRef}
                 height={height}
                 itemCount={rows.length}
-                itemSize={rowheight ? rowheight : 55}
+                itemSize={getRowHeight}
                 className="overflow-hidden"
                 width={full ? width : totalColumnsWidth + scrollBarSize}
               >
-                {RenderRow}
-              </FixedSizeList>
+                {({ data, index, style }) => (
+                  <RenderRow
+                    data={data}
+                    index={index}
+                    style={style}
+                    setRowHeight={setRowHeight}
+                  />
+                )}
+              </VariableSizeList>
             );
           }}
         </AutoSizer>
