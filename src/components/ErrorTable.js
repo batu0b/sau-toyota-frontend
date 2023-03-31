@@ -1,9 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, useRef } from "react";
 import { useBlockLayout, useResizeColumns, useTable } from "react-table";
 import { FixedSizeList, areEqual } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 
-export default function ErrorTable({ columns, data }) {
+export default function ErrorTable({
+  columns,
+  data,
+  height,
+  className,
+  full = false,
+  rowheight,
+}) {
   const scrollbarWidth = () => {
     //https://davidwalsh.name/detect-scrollbar-width
     const scrollDiv = document.createElement("div");
@@ -11,6 +18,7 @@ export default function ErrorTable({ columns, data }) {
       "style",
       "width: 100px; height: 100px; overflow: scroll; position:absolute; top:-9999px;"
     );
+
     document.body.appendChild(scrollDiv);
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
     document.body.removeChild(scrollDiv);
@@ -67,15 +75,19 @@ export default function ErrorTable({ columns, data }) {
   }, areEqual);
 
   return (
-    <div {...getTableProps()} className="table overflow-x-auto ">
-      <div>
+    <div
+      {...getTableProps()}
+      style={height ? { height: `${height}` } : { height: "75vh" }}
+      className={`tableComp overflow-x-auto   ${className} `}
+    >
+      <div className="thead">
         {headerGroups.map((headerGroup) => (
           <div
             {...headerGroup.getHeaderGroupProps()}
-            className="tr h-12  font-bold"
+            className="tr h-12 font-bold w-full"
           >
             {headerGroup.headers.map((column) => (
-              <div {...column.getHeaderProps()} className="th">
+              <div {...column.getHeaderProps()} className="th w-full">
                 {column.render("Header")}
               </div>
             ))}
@@ -89,9 +101,9 @@ export default function ErrorTable({ columns, data }) {
               <FixedSizeList
                 height={height}
                 itemCount={rows.length}
-                itemSize={55}
+                itemSize={rowheight ? rowheight : 55}
                 className="overflow-hidden"
-                width={totalColumnsWidth + scrollBarSize}
+                width={full ? width : totalColumnsWidth + scrollBarSize}
               >
                 {RenderRow}
               </FixedSizeList>

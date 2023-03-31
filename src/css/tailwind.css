@@ -52,19 +52,19 @@
 
 .th,
 .td {
-  @apply border-b place-items-center border-black border-r flex justify-center !important;
+  @apply border-b place-items-center  border-black border-r flex justify-center !important;
 }
 .tr.td:last-child {
-  @apply border-b-0;
+  @apply border-b-0 w-full !important;
 }
-.table {
-  @apply text-center w-full inline-block  relative border-spacing-0 border border-b-0 border-black h-[75vh];
+
+.tableComp {
+  @apply text-center w-full block  relative border-spacing-0 border border-b-0 border-black !important;
 }
 .tr.td:last-child {
   border-bottom: 0;
 }
 
-
-.ErrorTableBtn{
-  @apply bg-white min-w-[7rem] w-36 h-28  rounded-md border border-black 
+.ErrorTableBtn {
+  @apply bg-white min-w-[7rem] w-36 h-28  rounded-md border border-black;
 }
