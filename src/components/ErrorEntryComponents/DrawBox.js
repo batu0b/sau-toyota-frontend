@@ -22,7 +22,9 @@ export const DrawBox = ({ box }) => {
         h={70}
       />
       <div
-        onClick={() => handleCLick(box.boxColor, box.childPicID, handleOpen)}
+        onClick={() =>
+          handleCLick(box.boxColor, box.childPicID, box.labelText, handleOpen)
+        }
         style={{
           position: "absolute",
           left: box.boxX,

@@ -10,12 +10,19 @@ import { VirtualKeyboard } from "../VirtualKeyboard";
 
 export const ErrorModalForm = ({ componyName, show }) => {
   const [focusedField, setFocusedField] = useState(null);
-  const { errorCords, value } = useImgContext();
+  const { errorCords, value, defPart } = useImgContext();
   const { t } = useTranslation();
   const dummyA = [`1`, `2`, `3`, ` 4`, `5`, `6`, `7`, `8`, `9`];
   const navigate = useNavigate();
   const handleOnSubmit = (values) => {
-    alert(JSON.stringify({ CORDS: errorCords, defType: value, ...values }));
+    alert(
+      JSON.stringify({
+        CORDS: errorCords,
+        defType: value,
+        ...values,
+        defPart: defPart,
+      })
+    );
     localStorage.setItem("reloading", "true");
     localStorage.setItem("saved", "true");
     navigate(0);

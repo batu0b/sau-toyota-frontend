@@ -7,12 +7,13 @@ export default function ImgProvider({ children }) {
   const [previousObj, setPreviousObj] = useState([]);
   const [mainObj, setMainObj] = useState([]);
   const [picName, setPicName] = useState("");
+  const [defPart, setDefPart] = useState("");
   const [errValue, setErrValue] = useState("");
   const [objErr, setObjErr] = useState();
   const [allObjErr, setAllObjErr] = useState([]);
   const [errorCords, setErrorCords] = useState({ x: null, y: null });
 
-  const handleCLick = async (color, picName, func) => {
+  const handleCLick = async (color, picName, defPart, func) => {
     if (color === "blue") {
       try {
         const res = await fetch(`${apiUrl}ChildBoxData`);
@@ -30,6 +31,7 @@ export default function ImgProvider({ children }) {
     } else {
       func();
     }
+    setDefPart(defPart);
   };
 
   const prevClick = () => {
@@ -80,6 +82,7 @@ export default function ImgProvider({ children }) {
         value: errValue,
         previousObj: previousObj,
         errorCords: errorCords,
+        defPart: defPart,
         setMainObj: setMainObj,
         setObj: setObj,
         setObjErr: setObjErr,
@@ -87,6 +90,7 @@ export default function ImgProvider({ children }) {
         setPreviousObj: setPreviousObj,
         setValue: setErrValue,
         setErrorCords: setErrorCords,
+        setDefPart: setDefPart,
         handleCLick: handleCLick,
         prevClick: prevClick,
         returnMainObj: returnMainObj,
