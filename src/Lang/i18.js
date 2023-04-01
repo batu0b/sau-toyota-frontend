@@ -68,6 +68,7 @@ i18n
           ExitDepartment: "Exit Department",
           RepairType: "Repair Type",
           RepairMethod: "Repair Method",
+          OtherDeps: "Other Departments",
         },
       },
       tr: {
@@ -126,6 +127,7 @@ i18n
           ExitDepartment: "Çıkış Departmanı",
           RepairType: "Tamir Tipi",
           RepairMethod: "Tamir Metodu",
+          OtherDeps: "Diğer Bölümler",
         },
       },
       ru: {

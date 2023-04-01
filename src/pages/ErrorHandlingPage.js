@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import {
@@ -19,6 +19,10 @@ export default function ErrorHandlingPage() {
   const sortedData = data?.defectList.sort((a, b) =>
     a.depCode === exampleDep ? -1 : b.depCode === exampleDep ? 1 : 0
   );
+
+  const othersIndex = sortedData?.findIndex((item) => {
+    return item.depCode !== exampleDep;
+  });
 
   const columns = React.useMemo(
     () => [
@@ -162,9 +166,28 @@ export default function ErrorHandlingPage() {
     []
   );
 
+  const RowHeaderComponent = (props) => {
+    if (props.index === othersIndex) {
+      return (
+        <span className="bg-red-500 w-full text-white h-16 flex px-4">
+          {t("OtherDeps")}
+        </span>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="w-full h-screen flex flex-col overflow-y-hidden  ">
-      {data && <Table columns={columns} data={sortedData} />}
+      {data && (
+        <Table
+          rowHeaderComponent={RowHeaderComponent}
+          columns={columns}
+          data={sortedData}
+          rowHeaderHeight={40}
+          specialIndex={othersIndex}
+        />
+      )}
 
       <div className="bg-white fixed bottom-0 overflow-auto   w-full h-[25vh]">
         <div className="h-full items-center p-3  flex gap-6  ">

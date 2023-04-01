@@ -48,6 +48,11 @@ export default function ImgProvider({ children }) {
       const copyAllObjErr = [...allObjErr];
       copyAllObjErr.pop();
       setAllObjErr(copyAllObjErr);
+
+      if (errValue) {
+        setErrValue("");
+        setErrorCords({ x: null, y: null });
+      }
     }
   };
 
@@ -58,6 +63,11 @@ export default function ImgProvider({ children }) {
     setPicName(mainObj.defectButtonRecords[0].picId);
     setAllObjErr([]);
     setPreviousObj([]);
+
+    if (errValue) {
+      setErrValue("");
+      setErrorCords({ x: null, y: null });
+    }
   };
 
   return (

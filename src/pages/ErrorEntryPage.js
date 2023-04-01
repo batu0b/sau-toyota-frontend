@@ -23,6 +23,7 @@ export default function ErrorEntryPage() {
     prevClick,
     returnMainObj,
     errorCords,
+    setValue,
   } = useImgContext();
   const [clicked, setClicked] = useState(false);
   const [largeFont, setLargeFont] = useState(false);
@@ -93,6 +94,9 @@ export default function ErrorEntryPage() {
       setObjErr(data.partDefects);
       setMainObj(data);
     }
+    return () => {
+      setValue("");
+    };
   }, [data]);
 
   const { t } = useTranslation();

@@ -9,7 +9,10 @@ export default function Table({
   height,
   className,
   full = false,
-  rowheightAuto = false,
+  rowheightAuto = true,
+  rowHeaderComponent: RowHeaderComponent,
+  rowHeaderHeight,
+  specialIndex,
 }) {
   const listRef = useRef(null);
   const rowHeights = useRef({ 0: 100 });
@@ -62,7 +65,22 @@ export default function Table({
 
     useEffect(() => {
       if (rowRef.current) {
-        setRowHeight(index, rowRef.current.clientHeight);
+        if (rowHeaderHeight) {
+          if (specialIndex) {
+            if (specialIndex === index) {
+              setRowHeight(
+                index,
+                rowRef.current.clientHeight + rowHeaderHeight
+              );
+            } else {
+              setRowHeight(index, rowRef.current.clientHeight);
+            }
+          } else {
+            setRowHeight(index, rowRef.current.clientHeight + rowHeaderHeight);
+          }
+        } else {
+          setRowHeight(index, rowRef.current.clientHeight);
+        }
       }
       // eslint-disable-next-line
     }, [rowRef]);
@@ -72,17 +90,27 @@ export default function Table({
         {...row.getRowProps({
           style,
         })}
-        className="tr"
+        className="tr flex"
       >
-        {row.cells.map((cell) => {
-          return (
-            <div {...cell.getCellProps()} className="td">
-              <span className="w-full" ref={rowRef}>
-                {cell.render("Cell")}
-              </span>
-            </div>
-          );
-        })}
+        <span className="w-full flex flex-col">
+          {RowHeaderComponent ? (
+            <RowHeaderComponent index={index} row={row} />
+          ) : null}
+          <div className={`w-full flex ${"h-full"} `}>
+            {row.cells.map((cell) => {
+              return (
+                <div {...cell.getCellProps()} className="td">
+                  <span
+                    className="w-full flex items-center justify-center"
+                    ref={rowRef}
+                  >
+                    {cell.render("Cell")}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </span>
       </div>
     );
   }, areEqual);
