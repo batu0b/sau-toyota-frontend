@@ -11,7 +11,6 @@ export default function Table({
   full = false,
   rowheightAuto = true,
   rowHeaderComponent: RowHeaderComponent,
-  rowHeaderHeight,
   specialIndex,
 }) {
   const listRef = useRef(null);
@@ -59,24 +58,28 @@ export default function Table({
 
   const RenderRow = memo((props) => {
     const rowRef = useRef(null);
+    const componentRef = useRef(null);
     const { index, style, setRowHeight } = props;
     const row = rows[index];
     prepareRow(row);
 
     useEffect(() => {
       if (rowRef.current) {
-        if (rowHeaderHeight) {
+        if (componentRef.current) {
           if (specialIndex) {
             if (specialIndex === index) {
               setRowHeight(
                 index,
-                rowRef.current.clientHeight + rowHeaderHeight
+                rowRef.current.clientHeight + componentRef.current?.clientHeight
               );
             } else {
               setRowHeight(index, rowRef.current.clientHeight);
             }
           } else {
-            setRowHeight(index, rowRef.current.clientHeight + rowHeaderHeight);
+            setRowHeight(
+              index,
+              rowRef.current.clientHeight + componentRef.current?.clientHeight
+            );
           }
         } else {
           setRowHeight(index, rowRef.current.clientHeight);
@@ -94,7 +97,7 @@ export default function Table({
       >
         <span className="w-full flex flex-col">
           {RowHeaderComponent ? (
-            <RowHeaderComponent index={index} row={row} />
+            <RowHeaderComponent ref={componentRef} index={index} row={row} />
           ) : null}
           <div className={`w-full flex ${"h-full"} `}>
             {row.cells.map((cell) => {

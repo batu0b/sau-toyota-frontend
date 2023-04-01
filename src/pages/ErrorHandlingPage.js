@@ -166,16 +166,16 @@ export default function ErrorHandlingPage() {
     []
   );
 
-  const RowHeaderComponent = (props) => {
+  const RowHeaderComponent = React.forwardRef((props, ref) => {
     if (props.index === othersIndex) {
       return (
-        <span className="bg-red-500 w-full text-white h-16 flex px-4">
+        <span ref={ref} className="bg-red-500 w-full text-white h-16 flex px-4">
           {t("OtherDeps")}
         </span>
       );
     }
     return null;
-  };
+  });
 
   return (
     <div className="w-full h-screen flex flex-col overflow-y-hidden  ">
@@ -184,7 +184,6 @@ export default function ErrorHandlingPage() {
           rowHeaderComponent={RowHeaderComponent}
           columns={columns}
           data={sortedData}
-          rowHeaderHeight={40}
           specialIndex={othersIndex}
         />
       )}
