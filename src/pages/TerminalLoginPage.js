@@ -58,7 +58,8 @@ export default function TerminalLoginPage() {
         person.password === values.password &&
         person.sicilno === values.RegistrationNo
     );
-    if (user) {
+    const no = ExampleData.ExampleData.seqNo.toString() === values.assemblyNo;
+    if (user && no) {
       alert(JSON.stringify(values));
       await actions.resetForm();
       setIsAuth(true);
@@ -163,6 +164,7 @@ export default function TerminalLoginPage() {
                       label={t("assemblyNo")}
                       labelClass="w-[20%]"
                       inputClass="w-[80%] rounded-md p-3 "
+                      maxLength={5}
                     />
                   </div>
 
