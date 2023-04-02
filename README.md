@@ -93,6 +93,7 @@ Run the app
 
 ![Error Entry Page](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypage.png?raw=true)
 
+#### It gives a warning if the operation is not performed within a certain period of time.
 ![Error Entry Page Alert](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypagealert.png?raw=true)
 
 
