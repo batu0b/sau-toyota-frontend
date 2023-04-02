@@ -101,6 +101,8 @@ Run the app
 
 ![Error Entry Page Set Error Value](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypageseterrvalue.png?raw=true)
 
+
+#### A small click is enough to set the coordinates on the computer, but you need to press and hold it for a short time, such as 1 second, on touch devices.
 ![Error Entry Page Set Error Cords](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypageseterrcords.png?raw=true)
 
 
