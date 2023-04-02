@@ -54,7 +54,7 @@ The goal of the project is to fetch and handle errors in addition, if there is a
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/batu0b/sau-toyota-frontend.git
 ```
 
 Go to the project directory
