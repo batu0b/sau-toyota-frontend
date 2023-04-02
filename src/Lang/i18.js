@@ -69,6 +69,7 @@ i18n
           RepairType: "Repair Type",
           RepairMethod: "Repair Method",
           OtherDeps: "Other Departments",
+          Save: "Save",
         },
       },
       tr: {
@@ -128,6 +129,7 @@ i18n
           RepairType: "Tamir Tipi",
           RepairMethod: "Tamir Metodu",
           OtherDeps: "Diğer Bölümler",
+          Save: "Kaydet",
         },
       },
       ru: {
