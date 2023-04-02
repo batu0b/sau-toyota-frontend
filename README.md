@@ -1,75 +1,114 @@
-# Getting Started with Create React App
 
-```diff
-- deneme
+# What is this project about?
+This project is Sakarya University Toyota Frontend Project.
 
+The goal of the project is to fetch and handle errors in addition, if there is an error in the parts of the car, it is necessary to record this error with the coordinates of the region.
+
+
+## Used technologies
+
+**Client:** React, Material Ui, TailwindCSS
+
+**Sunucu:** Fake JSON Api
+
+**Libraries:**
+- react-window
+- i18next
+- react-router-dom
+- formik & yup
+- react-table 
+- axios
+- json-server
+
+
+**Dev Libraries:**
+- concurrently
+
+
+
+
+
+  
+## What You Need to Know Before Project Login
+
+**Registration Number:** 99619 
+
+**Password:** 1234 
+
+**Assembly Number:** 222 
+
+  ```diff
+- In order to reach the error entry page, you must enter this information completely and correctly on the login page.
 ```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Blue Box](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/bluebox.png?raw=true)
+  ```diff
+- If you want to reach the bottom picture by clicking on one of the blue boxes, you need to click on this box.
+```
 
-## Available Scripts
+[There is no real data as there is no real backend it is just a simulation so there is no picture under other boxes](#)
 
-In the project directory, you can run:
 
-### `npm start`
+## Run it on your computer
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone the project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+  git clone https://link-to-project
+```
 
-### `npm test`
+Go to the project directory
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+  cd src
+```
 
-### `npm run build`
+Install required packages
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Run the app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm start
+```
 
-### `npm run eject`
+  
+## Screenshots
+**Terminal Page:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Terminal Page](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/terminalpage.png?raw=true)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Login Page:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Login Error Entry Page](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/loginpage.png?raw=true)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Login Error Entry Page](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/loginpage2.png?raw=true)
 
-## Learn More
+![Login Error Entry Page](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/loginpageError.png?raw=true)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Error Entry Page:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Error Entry Page](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypage.png?raw=true)
 
-### Code Splitting
+![Error Entry Page Alert](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypagealert.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+![Error Entry Page Click Blue Box](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentryclickbluebox.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Error Entry Page Set Error Value](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypageseterrvalue.png?raw=true)
 
-### Making a Progressive Web App
+![Error Entry Page Set Error Cords](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypageseterrcords.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+![Error Entry Page Modal Form](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorentrypagemodalform.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+**Error List Page:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Error List Page](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorlist.png?raw=true)
 
-### `npm run build` fails to minify
+![Error List Page2](https://github.com/batu0b/sau-toyota-frontend/blob/master/screenshots/errorlist2.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
