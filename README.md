@@ -29,7 +29,7 @@ The goal of the project is to fetch and handle errors in addition, if there is a
 
 
   
-## What You Need to Know Before Project Login
+## What You Need to Know Before Opening the Project
 
 **Registration Number:** 99619 
 
