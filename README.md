@@ -9,7 +9,7 @@ The goal of the project is to fetch and handle errors in addition, if there is a
 
 **Client:** React, Material Ui, TailwindCSS
 
-**Sunucu:** Fake JSON Api
+**Server:** Fake JSON Api
 
 **Libraries:**
 - react-window
