@@ -13,6 +13,7 @@ function ConfirmationDialogRaw(props) {
   const [value, setValue] = React.useState(valueProp);
   const radioGroupRef = React.useRef(null);
   const scrolll = React.useRef(null);
+  const timer = React.useRef(null);
 
   React.useEffect(() => {
     if (!open) {
@@ -36,9 +37,21 @@ function ConfirmationDialogRaw(props) {
 
   const scrollUp = () => {
     scrolll.current.scrollTop -= 150;
+
+    timer.current = setInterval(() => {
+      scrolll.current.scrollTop -= 150;
+    }, 100);
   };
   const scrollDown = () => {
     scrolll.current.scrollTop += 150;
+
+    timer.current = setInterval(() => {
+      scrolll.current.scrollTop += 150;
+    }, 100);
+  };
+
+  const releaseButton = () => {
+    clearTimeout(timer.current);
   };
 
   const handleClick = (option) => {
@@ -125,7 +138,13 @@ function ConfirmationDialogRaw(props) {
             paddingLeft: 30,
             fontSize: 22,
           }}
-          onClick={scrollUp}
+          onMouseDown={scrollUp}
+          onMouseUp={releaseButton}
+          onMouseLeave={releaseButton}
+          onTouchStart={scrollUp}
+          onTouchCancel={releaseButton}
+          onTouchEnd={releaseButton}
+          
         >
           ⬆
         </button>
@@ -140,7 +159,13 @@ function ConfirmationDialogRaw(props) {
             cursor: "pointer",
             fontSize: 22,
           }}
-          onClick={scrollDown}
+          onMouseDown={scrollDown}
+          onMouseUp={releaseButton}
+          onMouseLeave={releaseButton}
+          onTouchStart={scrollDown}
+          onTouchCancel={releaseButton}
+          onTouchEnd={releaseButton}
+
         >
           ⬇{" "}
         </button>
