@@ -162,7 +162,7 @@ export default function ErrorEntryPage() {
                     {t("ModelFirstImage")}
                   </button>
                   <button
-                    onClick={() => navigate("errorlist")}
+                    onClick={() => navigate("defectlist")}
                     className="ErrorPageBtn"
                   >
                     {t("ErrorList")}
