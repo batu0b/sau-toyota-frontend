@@ -12,7 +12,12 @@ export const ErrorModalForm = ({ componyName, show }) => {
   const [focusedField, setFocusedField] = useState(null);
   const { errorCords, value, defPart } = useImgContext();
   const { t } = useTranslation();
-  const dummyA = [`1`, `2`, `3`, ` 4`, `5`, `6`, `7`, `8`, `9`];
+  const rddOptions = [`rdd 1`, `rdd 2`, `rdd 3`];
+  const repairMethod =  [`Tamir Methodu 1`, `Tamir Methoduı  2`, `Tamir Methodu  3`, `Tamir Methodu  4` , `Tamir Methodu  5` , `Tamir Methodu  6` , `Tamir Methodu  7` ];
+  const defectResponsible = [`Hata Sorumlusu 1`, `Hata Sorumlusu 2`, `Hata Sorumlusu 3`, ` Hata Sorumlusu 4`, ];
+  const defectClass = [`Hata Sınıfı 1`, `Hata Sınıfı  2`, `Hata Sınıfı  3`];
+  const exitDepartment = [`Çıkış Departmanı 1`, `Çıkış Departmanı  2`, `Çıkış Departmanı  3`, `Çıkış Departmanı  4` , `Çıkış Departmanı  5` , `Çıkış Departmanı  6`];
+  const repairType = [`Tamir Tipi 1`, `Tamir Tipi  2`, `Tamir Tipi  3`, `Tamir Tipi  4` , `Tamir Tipi  5` ];
   const navigate = useNavigate();
   const handleOnSubmit = (values) => {
     alert(
@@ -64,7 +69,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         name="ErrorManager"
                         type="text"
                         component={CustomSelectInput}
-                        options={dummyA}
+                        options={defectResponsible}
                         label={t("ErrorManaging")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
@@ -74,7 +79,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         name="ErrorClass"
                         type="text"
                         component={CustomSelectInput}
-                        options={dummyA}
+                        options={defectClass}
                         label={t("ErrorClass")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
@@ -84,7 +89,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         name="ExitDepartment"
                         type="text"
                         component={CustomSelectInput}
-                        options={dummyA}
+                        options={exitDepartment}
                         label={t("ExitDepartment")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
@@ -94,7 +99,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         name="RepairType"
                         type="text"
                         component={CustomSelectInput}
-                        options={dummyA}
+                        options={repairType}
                         label={t("RepairType")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
@@ -123,7 +128,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                           name="RDD"
                           type="text"
                           component={CustomSelectInput}
-                          options={dummyA}
+                          options={rddOptions}
                           label={"RDD"}
                           className="ModalFormInputs w-1/2"
                           inputClass="p-2 w-[70%] rounded-md"
@@ -149,7 +154,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         name="RepairMethod"
                         type="text"
                         component={CustomSelectInput}
-                        options={dummyA}
+                        options={repairMethod}
                         label={t("RepairMethod")}
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
