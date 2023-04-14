@@ -22,7 +22,7 @@ export default function Index() {
             element={<ErrorEntryPage />}
           />
           <Route
-            path="/cvqsterminal/defectentry/:depCode/:filterCode/errorlist"
+            path="/cvqsterminal/defectentry/:depCode/:filterCode/defectlist"
             element={<ErrorHandlingPage />}
           />
         </Route>
