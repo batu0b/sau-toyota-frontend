@@ -44,11 +44,11 @@ export const ErrorModalForm = ({ componyName, show }) => {
             initialValues={{
               Description: "",
               Process: "",
-              ErrorManager: "",
-              ErrorClass: "",
+              DefectResponsible: "",
+              DefectClass: "",
               RepairType: "",
               RDD: "",
-              FrequentError: false,
+              FrequentDefect: false,
               Harigami: false,
               RepairMethod: "",
               ExitDepartment: "",
@@ -56,7 +56,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
             validationSchema={ErrrorModalSchema}
             onSubmit={handleOnSubmit}
           >
-            {({ handleChange, setFieldValue, handleSubmit, values }) => {
+            {({ handleChange, handleSubmit, touched }) => {
               return (
                 <Form
                   onSubmit={handleSubmit}
@@ -64,9 +64,10 @@ export const ErrorModalForm = ({ componyName, show }) => {
                 >
                   <div className="flex w-full">
                     <div className="w-1/2 ">
+                      
                       <h1 className="font-bold text-xl">{componyName}</h1>
                       <Field
-                        name="ErrorManager"
+                        name="DefectResponsible"
                         type="text"
                         component={CustomSelectInput}
                         options={defectResponsible}
@@ -74,9 +75,10 @@ export const ErrorModalForm = ({ componyName, show }) => {
                         className="ModalFormInputs"
                         inputClass="p-2 w-[70%] rounded-md"
                         optionClass="bg-[#c5fec8]"
+                        
                       />
                       <Field
-                        name="ErrorClass"
+                        name="DefectClass"
                         type="text"
                         component={CustomSelectInput}
                         options={defectClass}
