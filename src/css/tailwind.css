@@ -19,6 +19,40 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* react-window  */
+  .customScrollBar::-webkit-scrollbar {
+    width: 16px;
+    border: 5px solid #f1f1f1;
+
+  }
+  .customScrollBar::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0;
+    background-clip: padding-box;
+    border: 0.05em solid #eeeeee;
+  }
+  .customScrollBar::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  .customScrollBar::-webkit-scrollbar-button:single-button {
+    background-color: #eeeeee;
+    display: block;
+    border-style: solid;
+    height: 13px;
+    width: 16px;
+    
+    
+  }
+  .customScrollBar::-webkit-scrollbar-button:single-button:vertical:decrement {
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent #b0b0b0 transparent;
+  }
+  .customScrollBar::-webkit-scrollbar-button:single-button:vertical:increment {
+    border-width: 8px 8px 0 8px;
+    border-color: #b0b0b0 transparent transparent transparent;
+  }
+
+ 
 }
 
 .DatePicker select {

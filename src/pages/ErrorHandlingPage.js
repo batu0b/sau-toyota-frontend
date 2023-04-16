@@ -75,36 +75,6 @@ export default function ErrorHandlingPage() {
         width: 120,
       },
       {
-        Header: t("Part"),
-        accessor: "parca",
-        width: 60,
-      },
-      {
-        Header: "Spot",
-        accessor: "spot",
-        width: 60,
-      },
-      {
-        Header: t("Day"),
-        accessor: "gun",
-      },
-      {
-        Header: "Arc",
-        accessor: "arc",
-      },
-      {
-        Header: `Arc ${t("Day")}`,
-        accessor: "arcgun",
-      },
-      {
-        Header: t("Error"),
-        accessor: "hata",
-      },
-      {
-        Header: t("Color"),
-        accessor: "renk",
-      },
-      {
         Header: t("Hour"),
         accessor: "cdate",
         Cell: ({ value }) => {
@@ -119,10 +89,7 @@ export default function ErrorHandlingPage() {
         Header: t("AskError"),
         accessor: "defrespName",
       },
-      {
-        Header: t("SubManaging"),
-        accessor: "ALTSORUMLU",
-      },
+    
       {
         Header: "Nr Reason",
         accessor: "NULL",
