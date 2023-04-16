@@ -56,7 +56,7 @@ export const ErrorModalForm = ({ componyName, show }) => {
             validationSchema={ErrrorModalSchema}
             onSubmit={handleOnSubmit}
           >
-            {({ handleChange, handleSubmit, touched }) => {
+            {({ handleChange, handleSubmit }) => {
               return (
                 <Form
                   onSubmit={handleSubmit}
