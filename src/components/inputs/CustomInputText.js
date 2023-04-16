@@ -13,7 +13,16 @@ export const CustomInputText = ({
   return (
     <label className={className}>
       <div className={labelClass}>{label} </div>
-      <input className={inputClass} max={3} {...field} {...props} />
+      <input
+        className={inputClass}
+        style={
+          form.touched[field.name] && form.errors[field.name]
+            ? { borderColor: "red", borderWidth: 2 }
+            : null
+        }
+        {...field}
+        {...props}
+      />
     </label>
   );
 };

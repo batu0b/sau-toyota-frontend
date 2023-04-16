@@ -1,4 +1,3 @@
-import { useField } from "formik";
 import React from "react";
 
 export const CustomSelectInput = ({
@@ -15,7 +14,7 @@ export const CustomSelectInput = ({
   return (
     <label className={className}>
       <div className={labelClass}>{label} </div>
-      <select {...field} className={inputClass} {...props}>
+      <select {...field} className={inputClass} style={form.touched[field.name] && form.errors[field.name] ? {borderColor: "red" , borderWidth: 2} : null} {...props}>
         <option value={null} disabled selected hidden></option>
         {options.map((option, index) => {
           return (

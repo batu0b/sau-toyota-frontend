@@ -106,6 +106,8 @@ export default function ErrorEntryPage() {
     setShow(true);
   };
 
+  const dummyError = [{defectPart: "Eci par deneme" , defectDescription: "Araci vpi analize'e ayirin" }, {defectPart: "chassis proses" , defectDescription: "kontrol edilmedi" } , {defectPart: "A/C tube" , defectDescription: "Deforme" } ]
+
   return (
     <>
       {!isLoading && data ? (
@@ -281,7 +283,6 @@ export default function ErrorEntryPage() {
                   {t("ErrorEntryPage")}
                 </span>
               </div>
-
               <span
                 style={{ background: `${ExampleData.ExampleData.bgColor}` }}
                 className={` ErrorEntryTopBttn text-white drop-shadow-lg   `}
@@ -295,29 +296,39 @@ export default function ErrorEntryPage() {
                 {`(${ExampleData.ExampleData.departmentCode})`}{" "}
               </h1>
             </div>
-            <div className="w-full flex flex-wrap items-center justify-evenly">
-              <div className="text-9xl basis-3/4 flex items-center flex-col">
-                <h1>
-                  {ExampleData.ExampleData.modelName}-
-                  {ExampleData.ExampleData.assyNo}{" "}
-                </h1>
-                <h1>{ExampleData.ExampleData.bodyNo} </h1>
-              </div>
-              <div className="border-2 p-3  border-black/50 rounded-md">
-                <div className="flex flex-col gap-12">
-                  <button
-                    onClick={() => setLargeFont(false)}
-                    className="ErrorEntrySideBttn bg-red-600 text-white"
-                  >
-                    {t("ErrorEntry")}
-                  </button>
-                  <input
-                    className="p-2 text-xl"
-                    value={ExampleData.ExampleData.assyNo}
-                    type="text"
-                  />
-                  <button className="ErrorEntrySideBttn"> {t("Search")}</button>
+            <div className="w-full flex flex-col  " >
+              <div className="w-full flex flex-wrap items-center justify-evenly">
+                <div className="text-9xl basis-3/4 flex items-center flex-col">
+                  <h1>
+                    {ExampleData.ExampleData.modelName}-
+                    {ExampleData.ExampleData.assyNo}{" "}
+                  </h1>
+                  <h1>{ExampleData.ExampleData.bodyNo} </h1>
                 </div>
+                <div className="border-2 p-3  border-black/50 rounded-md">
+                  <div className="flex flex-col gap-12">
+                    <button
+                      onClick={() => setLargeFont(false)}
+                      className="ErrorEntrySideBttn bg-red-600 text-white"
+                    >
+                      {t("ErrorEntry")}
+                    </button>
+                    <input
+                      className="p-2 text-xl"
+                      value={ExampleData.ExampleData.assyNo}
+                      type="text"
+                    />
+                    <button className="ErrorEntrySideBttn">
+                      {" "}
+                      {t("Search")}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 flex-col font-bold flex gap-5 text-xl">
+                {dummyError?.map((defect) => (
+                          <h1>{defect.defectPart.toLocaleUpperCase()} - {defect.defectDescription.toLocaleUpperCase()}</h1>
+                ))}
               </div>
             </div>
           </div>
