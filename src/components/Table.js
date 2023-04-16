@@ -64,7 +64,7 @@ export default function Table({
     prepareRow(row);
 
     useEffect(() => {
-      if (rowRef.current) {
+      if (rowRef.current && rowheightAuto) {
         if (componentRef.current) {
           if (specialIndex) {
             if (specialIndex === index) {
@@ -85,7 +85,6 @@ export default function Table({
           setRowHeight(index, rowRef.current.clientHeight);
         }
       }
-      // eslint-disable-next-line
     }, [rowRef]);
 
     return (
@@ -134,9 +133,9 @@ export default function Table({
     <div
       {...getTableProps()}
       style={height ? { height: `${height}` } : { height: "75vh" }}
-      className={`tableComp overflow-x-auto   ${className} `}
+      className={`tableComp overflow-x-auto w-full  ${className} `}
     >
-      <div className="thead">
+      <div className="thead ">
         {headerGroups.map((headerGroup) => (
           <div
             {...headerGroup.getHeaderGroupProps()}
@@ -162,7 +161,7 @@ export default function Table({
                 height={height}
                 itemCount={rows.length}
                 itemSize={getRowHeight}
-                className="overflow-hidden"
+                className="customScrollBar"
                 width={full ? width : totalColumnsWidth + scrollBarSize}
               >
                 {({ data, index, style }) => (
